@@ -17,8 +17,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('username')->unique();
+            $table->string('nip');
             $table->string('password');
-            $table->rememberToken();
+            $table->string('tempat_lahir');
+            $table->string('tanggal_lahir');
+            $table->string('jenis_kelamin');
+            $table->string('no_hp');
+            $table->string('alamat');
+            $table->tinyInteger('role')->default(0);
             $table->timestamps();
         });
     }

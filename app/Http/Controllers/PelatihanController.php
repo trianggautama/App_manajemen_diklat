@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisDiklat;
+use App\Models\Pelatihan;
+use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class PelatihanController extends Controller
@@ -13,14 +17,17 @@ class PelatihanController extends Controller
      */
     public function index()
     {
-        return view('admin.pelatihan.index');
+        $data = Pelatihan::all();
+        $jenisDiklat = JenisDiklat::all();
+        $user = User::whereRole('0')->get();
+        return view('admin.pelatihan.index', compact('data', 'jenisDiklat', 'user'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function create()
     {
         //
@@ -34,7 +41,9 @@ class PelatihanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Pelatihan::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -43,9 +52,10 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pelatihan $pelatihan)
     {
-        return view('admin.pelatihan.show');
+        return view('admin.pelatihan.show', compact('pelatihan'));
+
     }
 
     /**
@@ -54,9 +64,12 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pelatihan $pelatihan)
     {
-        return view('admin.pelatihan.edit');
+        $jenisDiklat = JenisDiklat::all();
+        $user = User::whereRole('0')->get();
+
+        return view('admin.pelatihan.edit', compact('pelatihan', 'jenisDiklat', 'user'));
     }
 
     /**
@@ -66,9 +79,11 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pelatihan $pelatihan)
     {
-        //
+        $pelatihan->update($request->all());
+
+        return redirect()->route('userAdmin.pelatihan.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -77,8 +92,17 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pelatihan $pelatihan)
     {
-        //
+        try {
+            $pelatihan->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }
