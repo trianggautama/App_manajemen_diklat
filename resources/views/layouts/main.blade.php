@@ -21,13 +21,13 @@ halo
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
-                    <img src="{{asset('admin/assets/images/logo.svg')}}" alt="" srcset="">
+                    <img src="{{asset('pemprov.png')}}" alt="" srcset=""> <small>Manajemen Diklat</small>
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class='sidebar-title'>Main Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{Route('userAdmin.beranda')}}" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>
                                 <span>beranda</span>
                             </a>
@@ -58,7 +58,7 @@ halo
                                 </li>
 
                                 <li>
-                                    <a href="component-badge.html">User Peserta</a>
+                                    <a href="">User Peserta</a>
                                 </li>
                             </ul>
 
@@ -120,21 +120,6 @@ halo
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
-                        </li>
-                        <li class="dropdown nav-icon me-2">
-                            <a href="#" data-bs-toggle="dropdown"
-                                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="d-lg-inline-block">
-                                    <i data-feather="mail"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
                             </div>
                         </li>
                         <li class="dropdown">

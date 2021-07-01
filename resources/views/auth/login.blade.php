@@ -21,9 +21,9 @@
                     <div class="card pt-4">
                         <div class="card-body">
                             <div class="text-center mb-5">
-                                <img src="{{asset('admin/assets/images/favicon.svg')}}" height="48" class='mb-4'>
-                                <h3>Sign In</h3>
-                                <p>Please sign in to continue to Voler.</p>
+                                <img src="{{asset('pemprov.png')}}" width="80" class='mb-2'>
+                                <h3>Log In</h3>
+                                <p>Aplikasi Manajemen Diklat</p>
                             </div>
                             <form action="index.html">
                                 <div class="form-group position-relative has-icon-left">
@@ -47,14 +47,9 @@
                                     </div>
                                 </div>
 
-                                <div class='form-check clearfix my-4'>
-                                    <div class="checkbox float-start">
-                                        <input type="checkbox" id="checkbox1" class='form-check-input'>
-                                        <label for="checkbox1">Remember me</label>
-                                    </div>
-                                </div>
                                 <div class="clearfix">
-                                    <button class="btn btn-primary float-end">Submit</button>
+                                    <a class="btn btn-primary float-end" href="{{Route('userAdmin.beranda')}}">Masuk</a>
+                                    <!-- <button class="btn btn-primary float-end">Masuk</button> -->
                                 </div>
                             </form>
                         </div>

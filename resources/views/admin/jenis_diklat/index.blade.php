@@ -6,28 +6,28 @@
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header text-right">
+            <div class="card-header d-flex flex-row-reverse">
                 <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
                     data-bs-target="#default">
-                    Tambah Data
-                </button>
+                    <i data-feather="plus" width="20"></i> Tambah Data
+                </button> 
 
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>No</th> 
                             <th>Jenis Diklat</th>
-                            <th>Aksi</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $d)
-                        <tr>
+                        <tr> 
                             <td>{{$loop->iteration}}</td>
                             <td>{{$d->jenis_diklat}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{Route('userAdmin.jenis_diklat.edit',$d->id)}}"
                                     class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
                                     Edit</a>
@@ -61,16 +61,16 @@
                         <label for="">Jenis Diklat</label>
                         <input type="text" name="jenis_diklat" class="form-control">
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Batal</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ml-1">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Simpan Data</span>
-                    </button>
+                    <div class="d-flex flex-row-reverse">
+                        <button type="submit" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block"><i data-feather="save" width="20"></i> Simpan Data</span>
+                        </button>
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Batal</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

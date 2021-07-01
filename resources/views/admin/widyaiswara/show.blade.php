@@ -2,58 +2,58 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Pelatihan / diklat / Detail</h3>
+        <h3>User Widyaiswara / Detail</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
             <div class="card-header text-right">
-                Detail Data
+               <div class="row">
+                   <div class="col-md">
+                        Detail Data
+                   </div>
+                   <div class="col-md d-flex flex-row-reverse">
+                        <a href="{{Route('userAdmin.widyaiswara.index')}}" class="btn btn-secondary"><i data-feather="back"></i> Kembali</a>
+                   </div>
+               </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        <td width="20%">Nama Pelatihan</td>
-                        <td>: {{$pelatihan->nama_pelatihan}}</td>
-                        <td></td>
+                        <td width="15%">Nip</td>
+                        <td width="1%">:</td>
+                        <td>{{$widyaiswara->nip}}</td>
                     </tr>
                     <tr>
-                        <td width="20%">Jenis Pelatihan</td>
-                        <td>: {{$pelatihan->jenis_diklat->jenis_diklat}}</td>
-                        <td></td>
+                        <td>Nama</td>
+                        <td>:</td>
+                        <td>{{$widyaiswara->nama}}</td>
                     </tr>
                     <tr>
-                        <td width="20%">tanggal Mulai</td>
-                        <td>: {{carbon\carbon::parse($pelatihan->tanggal_mulai)->translatedFormat('d F Y')}}
-                        </td>
-                        <td></td>
+                        <td>Tempat, tanggal lahir</td>
+                        <td>:</td>
+                        <td>{{$widyaiswara->tempat_lahir}}, {{$widyaiswara->tanggal_lahir}}</td>
                     </tr>
                     <tr>
-                        <td width="20%">Tanggal Selesai</td>
-                        <td>:
-                            {{carbon\carbon::parse($pelatihan->tanggal_selesai)->translatedFormat('d F Y')}}
-                        <td></td>
+                        <td>Jenis kelamin</td>
+                        <td>:</td>
+                        <td>@if($widyaiswara->no_hp == 1) Laki-laki @else Perempuan  @endif</td>
                     </tr>
                     <tr>
-                        <td width="20%">Widyaiswara</td>
-                        <td>: {{$pelatihan->user->nama}}</td>
-                        <td></td>
+                        <td>No Hp</td>
+                        <td>:</td>
+                        <td> {{$widyaiswara->no_hp}}</td>
                     </tr>
                     <tr>
-                        <td width="20%">Keterangan</td>
-                        <td>: {{$pelatihan->keterangan}}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td width="20%">Kuota Peserta</td>
-                        <td>: {{$pelatihan->kuota}}</td>
-                        <td></td>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td> {{$widyaiswara->alamat}}</td>
                     </tr>
                 </table>
-            </div> 
+            </div>
         </div>
         <div class="card">
             <div class="card-header">
-                Peserta
+                Pelatihan
             </div>
             <div class="card-body">
             <table class='table table-striped' id="table1">

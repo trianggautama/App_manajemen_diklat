@@ -6,10 +6,10 @@
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header text-right">
-                <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+            <div class="card-header">
+                <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
                     data-bs-target="#default">
-                    Tambah Data
+                    <i data-feather="plus" width="20"></i> Tambah Data
                 </button>
 
             </div>
@@ -115,11 +115,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
+                    <button type="button" class="btn float-end" data-bs-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Batal</span>
                     </button>
-                    <button type="submit" class="btn btn-primary ml-1">
+                    <button type="submit" class="btn float-end btn-primary ml-1">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Simpan Data</span>
                     </button>

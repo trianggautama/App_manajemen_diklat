@@ -12,9 +12,9 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex flex-column">
                                         <div class='px-3 py-3 d-flex justify-content-between'>
-                                            <h3 class='card-title'>BALANCE</h3>
+                                            <h3 class='card-title'>User Admin</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>$50 </p>
+                                                <p>5 </p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -29,9 +29,9 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex flex-column">
                                         <div class='px-3 py-3 d-flex justify-content-between'>
-                                            <h3 class='card-title'>Revenue</h3>
+                                            <h3 class='card-title'>Widyaiswara</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>$532,2 </p>
+                                                <p>20 </p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -46,9 +46,9 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex flex-column">
                                         <div class='px-3 py-3 d-flex justify-content-between'>
-                                            <h3 class='card-title'>ORDERS</h3>
+                                            <h3 class='card-title'>pelatihan</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>1,544 </p>
+                                                <p>17 </p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -63,9 +63,9 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex flex-column">
                                         <div class='px-3 py-3 d-flex justify-content-between'>
-                                            <h3 class='card-title'>Sales Today</h3>
+                                            <h3 class='card-title'>Perpustakaan</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>423 </p>
+                                                <p>42 </p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -76,7 +76,12 @@
                             </div>
                         </div>
                     </div>
-             
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Selamat Datang</h3>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit facere ratione ducimus ullam dolorum expedita obcaecati accusamus non quae quisquam corporis dignissimos, sequi repellendus ut, unde eligendi esse soluta earum?</p>
+                        </div>
+                    </div>
                 </section>
             </div>
 @endsection
