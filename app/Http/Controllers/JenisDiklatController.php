@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisDiklat;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class JenisDiklatController extends Controller
@@ -13,9 +15,10 @@ class JenisDiklatController extends Controller
      */
     public function index()
     {
-        return view('admin.jenis_diklat.index');
+        $data = JenisDiklat::all();
+        return view('admin.jenis_diklat.index', compact('data'));
     }
- 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +37,9 @@ class JenisDiklatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = JenisDiklat::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -54,9 +59,9 @@ class JenisDiklatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(JenisDiklat $jenisDiklat)
     {
-        return view('admin.jenis_diklat.edit');
+        return view('admin.jenis_diklat.edit', compact('jenisDiklat'));
     }
 
     /**
@@ -66,9 +71,11 @@ class JenisDiklatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, JenisDiklat $jenisDiklat)
     {
-        //
+        $jenisDiklat->update($request->all());
+
+        return redirect()->route('userAdmin.jenis_diklat.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -77,8 +84,17 @@ class JenisDiklatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(JenisDiklat $jenisDiklat)
     {
-        //
+        try {
+            $jenisDiklat->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

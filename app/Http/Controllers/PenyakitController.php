@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyakit;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class PenyakitController extends Controller
@@ -13,7 +15,8 @@ class PenyakitController extends Controller
      */
     public function index()
     {
-        return view('admin.penyakit.index');
+        $data = Penyakit::all();
+        return view('admin.penyakit.index', compact('data'));
     }
 
     /**
@@ -34,7 +37,9 @@ class PenyakitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Penyakit::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -54,9 +59,9 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Penyakit $penyakit)
     {
-        return view('admin.penyakit.edit');
+        return view('admin.penyakit.edit', compact('penyakit'));
     }
 
     /**
@@ -66,9 +71,11 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Penyakit $penyakit)
     {
-        //
+        $penyakit->update($request->all());
+
+        return redirect()->route('userAdmin.penyakit.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -77,8 +84,17 @@ class PenyakitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Penyakit $penyakit)
     {
-        //
+        try {
+            $penyakit->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

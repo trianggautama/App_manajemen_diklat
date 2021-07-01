@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class WidyaiswaraController extends Controller
 {
@@ -13,8 +16,8 @@ class WidyaiswaraController extends Controller
      */
     public function index()
     {
-
-        return view('admin.widyaiswara.index');
+        $data = User::all();
+        return view('admin.widyaiswara.index', compact('data'));
     }
 
     /**
@@ -35,7 +38,11 @@ class WidyaiswaraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $req = $request->all();
+        $req['password'] = Hash::make($request->password);
+        $data = User::create($req);
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -55,9 +62,9 @@ class WidyaiswaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $widyaiswara)
     {
-        return view('admin.widyaiswara.edit');
+        return view('admin.widyaiswara.edit', compact('widyaiswara'));
     }
 
     /**
@@ -67,9 +74,16 @@ class WidyaiswaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $widyaiswara)
     {
-        //
+        $req = $request->except('password');
+        if (isset($request->password)) {
+            $req['password'] = Hash::make($request->password);
+        }
+
+        $widyaiswara->update($req);
+
+        return redirect()->route('userAdmin.widyaiswara.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -78,8 +92,17 @@ class WidyaiswaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $widyaiswara)
     {
-        //
+        try {
+            $widyaiswara->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }
