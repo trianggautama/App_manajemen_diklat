@@ -11,4 +11,10 @@ class MainController extends Controller
 
         return view('admin.index');
     }
+
+    public function widyaiswara_beranda()
+    {
+
+        return view('widyaiswara.index');
+    }
 }

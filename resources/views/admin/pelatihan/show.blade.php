@@ -60,15 +60,15 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Pelatihan</th>
-                            <th>Jenis Pelatihan</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Selesai</th>
-                            <th>Kuota</th>
+                            <th>Nama </th>
+                            <th>NIP</th>
+                            <th>Tempat, Tanggal lahir</th>
+                            <th>Teelepon</th>
+                            <th>SKPD</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                        <tr>
                            <td></td>
                            <td></td>

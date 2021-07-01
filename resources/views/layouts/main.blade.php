@@ -39,6 +39,9 @@ halo
                             </a>
                             <ul class="submenu">
                                 <li>
+                                    <a href="{{Route('userAdmin.skpd.index')}}">SKPD</a>
+                                </li>
+                                <li>
                                     <a href="{{Route('userAdmin.jenis_diklat.index')}}">Jenis Diklat</a>
                                 </li>
                                 <li>
@@ -128,7 +131,7 @@ halo
                                 <div class="avatar me-1">
                                     <img src="{{asset('admin/assets/images/avatar/avatar-s-1.png')}}" alt="" srcset="">
                                 </div>
-                                <div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
+                                <div class="d-none d-md-block d-lg-inline-block">Hi, (Nama User)</div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
