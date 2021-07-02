@@ -78,7 +78,7 @@ halo
                                     <a href="{{Route('userAdmin.pelatihan.index')}}">Agenda Pelatihan</a>
                                 </li>
                                 <li>
-                                    <a href="component-extra-divider.html">Anggaran</a>
+                                    <a href="{{Route('userAdmin.anggaran.index')}}">Anggaran</a>
                                 </li>
                                 <li>
                                     <a href="component-extra-divider.html">Perpustakaan</a>

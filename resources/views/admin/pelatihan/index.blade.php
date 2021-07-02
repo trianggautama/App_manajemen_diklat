@@ -11,7 +11,6 @@
                     data-bs-target="#default">
                     <i data-feather="plus" width="20"></i> Tambah Data
                 </button>
-
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">

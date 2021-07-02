@@ -21,6 +21,7 @@ Route::prefix('/user-admin')->name('userAdmin.')->group(function (){
     Route::resource('penyakit', '\App\Http\Controllers\PenyakitController');
     Route::resource('widyaiswara', '\App\Http\Controllers\WidyaiswaraController');
     Route::resource('pelatihan', '\App\Http\Controllers\PelatihanController');
+    Route::resource('anggaran', '\App\Http\Controllers\AnggaranController');
 });
 
 Route::prefix('/user-widyaiswara')->name('userWidyaIswara.')->group(function (){
