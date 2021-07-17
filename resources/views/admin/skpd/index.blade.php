@@ -18,24 +18,22 @@
                     <thead>
                         <tr>
                             <th>No</th> 
-                            <th>Jenis Diklat</th>
+                            <th>Nama SKPD</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $d)
                         <tr> 
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$d->jenis_diklat}}</td>
+                            <td>1</td>
+                            <td>Dinas A</td>
                             <td class="text-center">
-                                <a href="{{Route('userAdmin.jenis_diklat.edit',$d->id)}}"
+                                <a href="{{Route('userAdmin.skpd.edit', 1)}}"
                                     class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
                                     Edit</a>
-                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
+                                <a href="{{Route('userAdmin.skpd.destroy',1)}}" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
                                     Hapus</a>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -58,8 +56,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Jenis Diklat</label>
-                        <input type="text" name="jenis_diklat" class="form-control">
+                        <label for="">Nama SKPD</label>
+                        <input type="text" name="nama_skpd" class="form-control">
                     </div>
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="btn btn-primary ml-1">

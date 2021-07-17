@@ -6,10 +6,10 @@
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header text-right">
+            <div class="card-header d-flex flex-row-reverse">
                 <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
                     data-bs-target="#default">
-                    Tambah Data
+                    <i data-feather="plus" width="20"></i> Tambah Data
                 </button>
 
             </div>
@@ -22,8 +22,6 @@
                             <th>NIP</th>
                             <th>Tempat, Tanggal lahir</th>
                             <th>Jenis Kelamin</th>
-                            <th>No Hp</th>
-                            <th>Alamat</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -37,11 +35,12 @@
                             <td>{{$d->tempat_lahir}},
                                 {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->jenis_kelamin}}</td>
-                            <td>{{$d->no_hp}}</td>
-                            <td>{{$d->alamat}}</td>
                             <td>
+                                <a href="{{Route('userAdmin.widyaiswara.show',$d->id)}}"
+                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
+                                    Edit</a>
                                 <a href="{{Route('userAdmin.widyaiswara.edit',$d->id)}}"
-                                    class="btn icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
+                                    class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
                                     Edit</a>
                                 <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
                                     Hapus</a>
@@ -124,16 +123,16 @@
                         <label for="">Password</label>
                         <input type="password" name="password" class="form-control">
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Batal</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ml-1">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Simpan Data</span>
-                    </button>
+                    <div class="d-flex flex-row-reverse">
+                        <button type="submit" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block"><i data-feather="save" width="20"></i> Simpan Data</span>
+                        </button>
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Batal</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
