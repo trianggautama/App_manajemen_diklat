@@ -131,14 +131,22 @@ halo
                                 <div class="avatar me-1">
                                     <img src="{{asset('admin/assets/images/avatar/avatar-s-1.png')}}" alt="" srcset="">
                                 </div>
-                                <div class="d-none d-md-block d-lg-inline-block">Hi, (Nama User)</div>
+                                <div class="d-none d-md-block d-lg-inline-block">Hi, {{Auth::user()->nama}}</div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
                                 <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
                                 <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+                                {{-- <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a> --}}
+                                <a class="dropdown-item" href="{{ route('auth.logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                    <i data-feather="log-out"></i> Logout
+                                </a>
+                                <form id="frm-logout" action="{{ route('auth.logout') }}" method="POST"
+                                    style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </div>
                         </li>
                     </ul>

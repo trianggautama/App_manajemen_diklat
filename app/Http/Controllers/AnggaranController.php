@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggaran;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class AnggaranController extends Controller
@@ -13,7 +15,14 @@ class AnggaranController extends Controller
      */
     public function index()
     {
-        return view('admin.anggaran.index');
+        $data = Anggaran::all();
+        $data->map(function ($item) {
+            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
+
+            return $item;
+        });
+
+        return view('admin.anggaran.index', compact('data'));
     }
 
     /**
@@ -34,7 +43,9 @@ class AnggaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Anggaran::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -45,7 +56,7 @@ class AnggaranController extends Controller
      */
     public function show($id)
     {
-        return view('admin.anggaran.show');
+        //
     }
 
     /**
@@ -54,9 +65,9 @@ class AnggaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Anggaran $anggaran)
     {
-        return view('admin.anggaran.edit');
+        return view('admin.anggaran.edit', compact('anggaran'));
     }
 
     /**
@@ -66,9 +77,11 @@ class AnggaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Anggaran $anggaran)
     {
-        //
+        $anggaran->update($request->all());
+
+        return redirect()->route('userAdmin.anggaran.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -77,8 +90,17 @@ class AnggaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Anggaran $anggaran)
     {
-        //
+        try {
+            $anggaran->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

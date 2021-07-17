@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('no_hp');
             $table->string('alamat');
+            $table->unsignedBigInteger('skpd_id')->nullable();
+            $table->foreign('skpd_id')->references('id')->on('skpds')->onDelete('restrict');
+            $table->unsignedBigInteger('pelatihan_id')->nullable();
             $table->tinyInteger('role')->default(0);
             $table->timestamps();
         });

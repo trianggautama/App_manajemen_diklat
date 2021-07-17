@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggaran;
-use App\Models\JenisDiklat;
-use App\Models\Pelatihan;
-use App\Models\Skpd;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class PelatihanController extends Controller
+class PesertaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +16,8 @@ class PelatihanController extends Controller
      */
     public function index()
     {
-        $data = Pelatihan::all();
-        $jenisDiklat = JenisDiklat::all();
-        $user = User::whereRole('2')->get();
-        return view('admin.pelatihan.index', compact('data', 'jenisDiklat', 'user'));
+        $data = User::whereRole(2)->get();
+        return view('admin.peserta.index', compact('data'));
     }
 
     /**
@@ -43,7 +38,10 @@ class PelatihanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Pelatihan::create($request->all());
+        $req = $request->all();
+        $req['username'] = $request->nip;
+        $req['password'] = Hash::make($request->nip);
+        $data = User::create($req);
 
         return back()->withSuccess('Data berhasil disimpan');
     }
@@ -54,18 +52,9 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pelatihan $pelatihan)
+    public function show(User $peserta)
     {
-        $anggaran = Anggaran::wherePelatihanId($pelatihan->id)->get();
-        $anggaran->map(function ($item) {
-            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
-
-            return $item;
-        });
-        $skpd = Skpd::all();
-        $peserta = User::wherePelatihanId($pelatihan->id)->get();
-        return view('admin.pelatihan.show', compact('pelatihan', 'anggaran', 'skpd', 'peserta'));
-
+        return view('admin.peserta.show', compact('peserta'));
     }
 
     /**
@@ -74,12 +63,9 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pelatihan $pelatihan)
+    public function edit(User $peserta)
     {
-        $jenisDiklat = JenisDiklat::all();
-        $user = User::whereRole('2')->get();
-
-        return view('admin.pelatihan.edit', compact('pelatihan', 'jenisDiklat', 'user'));
+        return view('admin.peserta.edit', compact('peserta'));
     }
 
     /**
@@ -89,11 +75,16 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelatihan $pelatihan)
+    public function update(Request $request, User $peserta)
     {
-        $pelatihan->update($request->all());
+        $req = $request->except('password');
+        if (isset($request->password)) {
+            $req['password'] = Hash::make($request->password);
+        }
 
-        return redirect()->route('userAdmin.pelatihan.index')->withSuccess('Data berhasil diubah');
+        $peserta->update($req);
+
+        return redirect()->route('userAdmin.peserta.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -102,10 +93,10 @@ class PelatihanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelatihan $pelatihan)
+    public function destroy(User $peserta)
     {
         try {
-            $pelatihan->delete();
+            $peserta->delete();
             return back()->withSuccess('Data berhasil dihapus');
         } catch (QueryException $e) {
 

@@ -9,29 +9,32 @@
             <div class="card-header text-right">
                 Form Edit
             </div>
-            <form action="{{Route('userAdmin.pelatihan.update',1)}}" method="POST">
+            <form action="{{Route('userAdmin.anggaran.update',$anggaran->id)}}" method="POST">
                 @csrf
                 @method('put')
                 <div class="card-body">
                     <div class="form-group">
                         <label for="">No Rekening </label>
-                        <input type="text" name="nama" class="form-control">
+                        <input type="text" name="no_rekening" value="{{$anggaran->no_rekening}}" class="form-control"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="">uraian</label>
-                        <input type="text" name="NIP" class="form-control">
+                        <input type="text" name="uraian" value="{{$anggaran->uraian}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="">Anggaran / Orang</label>
-                        <input type="text" name="no_hp" class="form-control">
+                        <input type="number" name="jumlah_anggaran" value="{{$anggaran->jumlah_anggaran}}"
+                            class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="">volume / orang</label>
-                        <input type="number" name="volume" class="form-control">
+                        <input type="number" name="volume" value="{{$anggaran->volume}}" class="form-control" required>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn icon icon-left btn-primary float-right"><i data-feather="save"></i> Ubah
+                    <button type="submit" class="btn icon icon-left btn-primary float-right"><i data-feather="save"></i>
+                        Ubah
                         Data</button>
                 </div>
             </form>

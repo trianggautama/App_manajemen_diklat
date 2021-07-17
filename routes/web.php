@@ -6,7 +6,7 @@ use App\Http\Controllers\MainController;use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('welcome');
 
 Route::prefix('/auth')->name('auth.')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -21,11 +21,14 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('jenis_diklat', '\App\Http\Controllers\JenisDiklatController');
         Route::resource('penyakit', '\App\Http\Controllers\PenyakitController');
         Route::resource('widyaiswara', '\App\Http\Controllers\WidyaiswaraController');
+        Route::resource('peserta', '\App\Http\Controllers\PesertaController');
         Route::resource('pelatihan', '\App\Http\Controllers\PelatihanController');
         Route::resource('anggaran', '\App\Http\Controllers\AnggaranController');
     });
 });
 
-Route::prefix('/user-widyaiswara')->name('userWidyaIswara.')->group(function () {
-    Route::get('/beranda', [MainController::class, 'widyaiswara_beranda'])->name('beranda');
+Route::group(['middleware' => ['widyaiswara']], function () {
+    Route::prefix('/user-widyaiswara')->name('userWidyaIswara.')->group(function () {
+        Route::get('/beranda', [MainController::class, 'widyaiswara_beranda'])->name('beranda');
+    });
 });
