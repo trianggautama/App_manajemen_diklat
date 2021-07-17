@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'nama' => 'Admin Widyaiswara',
-            'username' => 'widyaiswara',
+            'nama' => 'Admin ',
+            'username' => 'admin',
             'password' => Hash::make('123'),
             'nip' => '123',
             'jenis_kelamin' => 'Laki-laki',
@@ -26,6 +26,19 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'banjarbaru',
             'no_hp' => '08777777777',
             'role' => '1',
+        ]);
+
+        DB::table('users')->insert([
+            'nama' => 'Widyaiswara ',
+            'username' => 'widyaiswara',
+            'password' => Hash::make('123'),
+            'nip' => '12345',
+            'jenis_kelamin' => 'Perempuan',
+            'tempat_lahir' => 'banjarbaru',
+            'tanggal_lahir' => '1997-05-05',
+            'alamat' => 'banjarbaru',
+            'no_hp' => '08777777777',
+            'role' => '2',
         ]);
 
     }

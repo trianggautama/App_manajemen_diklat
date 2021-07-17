@@ -38,7 +38,7 @@
                             <td>
                                 <a href="{{Route('userAdmin.widyaiswara.show',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Edit</a>
+                                    Lihat</a>
                                 <a href="{{Route('userAdmin.widyaiswara.edit',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
                                     Edit</a>
@@ -123,6 +123,7 @@
                         <label for="">Password</label>
                         <input type="password" name="password" class="form-control">
                     </div>
+                    <input type="hidden" name="role" value="2">
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="btn btn-primary ml-1">
                             <i class="bx bx-check d-block d-sm-none"></i>

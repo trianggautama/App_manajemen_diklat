@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label for="">Widyaiswara</label>
                         <select name="user_id" id="" class="form-control">
-                            <option value="">- jenis widyaiswara -</option>
+                            <option value="">- widyaiswara -</option>
                             @foreach ($user as $item)
                             <option value="{{$item->id}}" {{$pelatihan->user_id == $item->id ? 'selected' : ''}}>
                                 {{$item->nama}}</option>

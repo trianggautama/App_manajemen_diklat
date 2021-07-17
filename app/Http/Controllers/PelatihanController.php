@@ -19,7 +19,7 @@ class PelatihanController extends Controller
     {
         $data = Pelatihan::all();
         $jenisDiklat = JenisDiklat::all();
-        $user = User::whereRole('0')->get();
+        $user = User::whereRole('2')->get();
         return view('admin.pelatihan.index', compact('data', 'jenisDiklat', 'user'));
     }
 
@@ -67,7 +67,7 @@ class PelatihanController extends Controller
     public function edit(Pelatihan $pelatihan)
     {
         $jenisDiklat = JenisDiklat::all();
-        $user = User::whereRole('0')->get();
+        $user = User::whereRole('2')->get();
 
         return view('admin.pelatihan.edit', compact('pelatihan', 'jenisDiklat', 'user'));
     }
