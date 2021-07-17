@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,11 +24,12 @@
                                 <h3>Log In</h3>
                                 <p>Aplikasi Manajemen Diklat</p>
                             </div>
-                            <form action="index.html">
+                            <form action="{{route('auth.authenticate')}}" method="POST">
+                                @csrf
                                 <div class="form-group position-relative has-icon-left">
                                     <label for="username">Username</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" id="username">
+                                        <input type="text" class="form-control" id="username" name="username" required>
                                         <div class="form-control-icon">
                                             <i data-feather="user"></i>
                                         </div>
@@ -40,7 +40,8 @@
                                         <label for="password">Password</label>
                                     </div>
                                     <div class="position-relative">
-                                        <input type="password" class="form-control" id="password">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            required>
                                         <div class="form-control-icon">
                                             <i data-feather="lock"></i>
                                         </div>
@@ -48,8 +49,9 @@
                                 </div>
 
                                 <div class="clearfix">
-                                    <a class="btn btn-primary float-end" href="{{Route('userAdmin.beranda')}}">Masuk</a>
-                                    <!-- <button class="btn btn-primary float-end">Masuk</button> -->
+                                    {{-- <a class="btn btn-primary float-end" href="{{Route('userAdmin.beranda')}}">Masuk</a>
+                                    --}}
+                                    <button type="submit" class="btn btn-primary float-end">Masuk</button>
                                 </div>
                             </form>
                         </div>

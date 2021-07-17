@@ -10,30 +10,34 @@
                 <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
                     data-bs-target="#default">
                     <i data-feather="plus" width="20"></i> Tambah Data
-                </button> 
+                </button>
 
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th>No</th> 
+                            <th>No</th>
                             <th>Nama SKPD</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr> 
-                            <td>1</td>
-                            <td>Dinas A</td>
+                        @foreach ($data as $d)
+
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$d->nama_skpd}}</td>
                             <td class="text-center">
-                                <a href="{{Route('userAdmin.skpd.edit', 1)}}"
+                                <a href="{{Route('userAdmin.skpd.edit', $d->id)}}"
                                     class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
                                     Edit</a>
-                                <a href="{{Route('userAdmin.skpd.destroy',1)}}" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
+                                <a href="{{Route('userAdmin.skpd.destroy',$d->id)}}"
+                                    class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
                                     Hapus</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -46,7 +50,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="{{route('userAdmin.jenis_diklat.store')}}" method="POST">
+            <form action="{{route('userAdmin.skpd.store')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Tambah Data</h5>
@@ -57,7 +61,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama SKPD</label>
-                        <input type="text" name="nama_skpd" class="form-control">
+                        <input type="text" name="nama_skpd" class="form-control" required>
                     </div>
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="btn btn-primary ml-1">

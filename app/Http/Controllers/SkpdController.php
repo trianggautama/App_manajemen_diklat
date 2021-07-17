@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skpd;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class SkpdController extends Controller
@@ -13,8 +15,9 @@ class SkpdController extends Controller
      */
     public function index()
     {
-        return view('admin.skpd.index');
-    } 
+        $data = Skpd::all();
+        return view('admin.skpd.index', compact('data'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +37,9 @@ class SkpdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Skpd::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -54,9 +59,9 @@ class SkpdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Skpd $skpd)
     {
-        return view('admin.skpd.edit');
+        return view('admin.skpd.edit', compact('skpd'));
     }
 
     /**
@@ -66,9 +71,11 @@ class SkpdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Skpd $skpd)
     {
-        //
+        $skpd->update($request->all());
+
+        return redirect()->route('userAdmin.skpd.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -77,8 +84,17 @@ class SkpdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Skpd $skpd)
     {
-        //
+        try {
+            $skpd->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }
