@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MainController;use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\PelatihanWidyaiswaraController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -30,5 +32,10 @@ Route::group(['middleware' => ['admin']], function () {
 Route::group(['middleware' => ['widyaiswara']], function () {
     Route::prefix('/user-widyaiswara')->name('userWidyaIswara.')->group(function () {
         Route::get('/beranda', [MainController::class, 'widyaiswara_beranda'])->name('beranda');
+        Route::get('/profil', [MainController::class, 'widyaiswara_profil'])->name('profil');
+        Route::resource('pelatihan_widyaiswara', '\App\Http\Controllers\PelatihanWidyaiswaraController');
+        Route::get('/pelatihan_widyaiswaras/riwayat', [PelatihanWidyaiswaraController::class, 'riwayat'])->name('pelatihan_widyaiswara.riwayat');
+        Route::resource('kegiatan_harian', '\App\Http\Controllers\KegiatanController');
     });
 });
+ 

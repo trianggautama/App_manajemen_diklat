@@ -17,4 +17,10 @@ class MainController extends Controller
 
         return view('widyaiswara.index');
     }
+
+    public function widyaiswara_profil()
+    {
+
+        return view('widyaiswara.profil');
+    }
 }

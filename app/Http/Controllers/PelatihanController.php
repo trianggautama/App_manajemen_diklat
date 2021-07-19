@@ -9,6 +9,7 @@ use App\Models\Skpd;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PelatihanController extends Controller
 {
@@ -43,7 +44,9 @@ class PelatihanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Pelatihan::create($request->all());
+        $req = $request->all();
+        $req['user_id'] = Auth::user()->id;
+        $data = Pelatihan::create($req);
 
         return back()->withSuccess('Data berhasil disimpan');
     }

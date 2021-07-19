@@ -13,6 +13,31 @@
                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit facere ratione ducimus ullam dolorum expedita obcaecati accusamus non quae quisquam corporis dignissimos, sequi repellendus ut, unde eligendi esse soluta earum?</p>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Pelatihan Berlangsung</b>
+                        </div>
+                        <div class="card-body">
+                        <table class='table table-striped' id="table1">
+                                <thead>
+                                    <tr> 
+                                        <th>No</th>
+                                        <th>Nama Pelatihan</th>
+                                        <th>Jenis Pelatihan</th>
+                                        <th>Tanggal Mulai</th>
+                                        <th>Tanggal Selesai</th>
+                                        <th>Kuota</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </section>
             </div>
 @endsection

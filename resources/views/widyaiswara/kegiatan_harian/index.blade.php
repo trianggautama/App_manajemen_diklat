@@ -2,12 +2,13 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Jenis diklat / Data</h3>
+        <h3>Kegiatan Harian Pelatihan (Nama Pelatihan)</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header d-flex flex-row-reverse">
-                <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+            <div class="card-header"> 
+                Tabel Data
+                <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
                     data-bs-target="#default">
                     <i data-feather="plus" width="20"></i> Tambah Data
                 </button> 
@@ -16,25 +17,31 @@
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th>No</th> 
-                            <th>Jenis Diklat</th>
-                            <th class="text-center">Aksi</th>
+                            <th>No</th>
+                            <th>Tanggal Kegiatan</th>
+                            <th>Materi</th>
+                            <th>Waktu kegiatan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $d)
-                        <tr> 
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$d->jenis_diklat}}</td>
-                            <td class="text-center">
-                                <a href="{{Route('userAdmin.jenis_diklat.edit',$d->id)}}"
-                                    class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
+                        <tr>
+                            <td>1</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>
+                                <a href="{{Route('userWidyaIswara.kegiatan_harian.show','1')}}"
+                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
+                                    Detail</a>
+                                <a href="{{Route('userWidyaIswara.kegiatan_harian.edit','1')}}"
+                                    class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="info"></i>
                                     Edit</a>
-                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
+                                <a href="{{Route('userWidyaIswara.kegiatan_harian.show','1')}}"
+                                    class="btn btn-sm icon icon-left btn-danger mb-1"><i data-feather="info"></i>
                                     Hapus</a>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -57,8 +64,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Jenis Diklat</label>
-                        <input type="text" name="jenis_diklat" class="form-control">
+                        <label for="">Tanggal Kegiatan</label>
+                        <input type="date" name="jenis_diklat" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Materi</label>
+                        <input type="text" name="materi" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Waktu Kegiatan (Menit)</label>
+                        <input type="text" name="waktu_kegiatan" class="form-control">
                     </div>
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="btn btn-primary ml-1">

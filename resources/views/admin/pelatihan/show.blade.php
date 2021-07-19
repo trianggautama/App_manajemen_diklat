@@ -139,6 +139,13 @@
                                 {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->no_hp}}</td>
                             <td>{{$d->skpd->nama_skpd}}</td>
+                            <td>
+                                <a href="{{Route('userAdmin.peserta.edit',$d->id)}}"
+                                    class="btn icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
+                                    Edit</a>
+                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
+                                    Hapus</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

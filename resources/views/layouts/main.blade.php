@@ -25,6 +25,7 @@ halo
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
+                        @if(Auth::user()->role == 1)
                         <li class='sidebar-title'>Main Menu</li>
                         <li class="sidebar-item active ">
                             <a href="{{Route('userAdmin.beranda')}}" class='sidebar-link'>
@@ -84,8 +85,37 @@ halo
                                     <a href="component-extra-divider.html">Perpustakaan</a>
                                 </li>
                             </ul>
+                        </li>
+                        @elseif(Auth::user()->role == 2)
+                        <li class='sidebar-title'>Menu Widyaiswara</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{Route('userWidyaIswara.beranda')}}" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{Route('userWidyaIswara.profil')}}" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Profil</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="briefcase" width="20"></i>
+                                <span>Data Pelatihan</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.index')}}">Agenda Pelatihan</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.riwayat')}}">riwayat Pelatihan</a>
+                                </li>
+                            </ul>
 
                         </li>
+                        @endif 
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
