@@ -26,5 +26,8 @@ class User extends Authenticatable
         return $this->belongsTo(Skpd::class);
     }
     
-    
+    public function pelatihan(): BelongsTo
+    {
+        return $this->belongsTo(Pelatihan::class);
+    }
 }

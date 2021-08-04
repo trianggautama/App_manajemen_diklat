@@ -116,6 +116,21 @@ halo
 
                         </li>
                         @endif 
+                        @if(Auth::user()->role == 3)
+                        <li class='sidebar-title'>Menu Widyaiswara</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{Route('userPeserta.beranda')}}" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{Route('userPeserta.profil')}}" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Profil</span>
+                            </a>
+                        </li>
+                        @endif 
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

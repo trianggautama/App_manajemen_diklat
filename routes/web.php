@@ -38,4 +38,10 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::resource('kegiatan_harian', '\App\Http\Controllers\KegiatanController');
     });
 });
+
+Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
+    Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
+    Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
+    Route::resource('kegiatan_harian_peserta', '\App\Http\Controllers\KegiatanPesertaController');
+});
  
