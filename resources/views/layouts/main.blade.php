@@ -82,10 +82,10 @@ halo
                                     <a href="{{Route('userAdmin.anggaran.index')}}">Anggaran</a>
                                 </li>
                                 <li>
-                                    <a href="component-extra-divider.html">Perpustakaan</a>
+                                    <a href="{{Route('userAdmin.laporan_aktualisasi.index')}}">Perpustakaan</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> 
                         @elseif(Auth::user()->role == 2)
                         <li class='sidebar-title'>Menu Widyaiswara</li>
                         <li class="sidebar-item  ">
@@ -128,6 +128,12 @@ halo
                             <a href="{{Route('userPeserta.profil')}}" class='sidebar-link'>
                                 <i data-feather="user" width="20"></i>
                                 <span>Profil</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{Route('userPeserta.laporan_aktualisasi.index')}}" class='sidebar-link'>
+                                <i data-feather="file" width="20"></i>
+                                <span>Laporan Aktualisasi</span>
                             </a>
                         </li>
                         @endif 
@@ -179,9 +185,6 @@ halo
                                 <div class="d-none d-md-block d-lg-inline-block">Hi, {{Auth::user()->nama}}</div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
                                 {{-- <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a> --}}
                                 <a class="dropdown-item" href="{{ route('auth.logout') }}"
@@ -198,15 +201,10 @@ halo
                 </div>
             </nav>
             @yield('content')
-
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2020 &copy; Voler</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">Ahmad Saugi</a></p>
+                    <div class="text-centers">
+                        <p>2021 &copy; Pemerintah Provinsi Kalimantan Selatan</p>
                     </div>
                 </div>
             </footer>

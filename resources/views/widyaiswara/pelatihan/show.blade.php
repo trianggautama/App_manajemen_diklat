@@ -87,7 +87,7 @@
                     <tbody>
                        <tr>
                            <td colspan="6">-</td>
-                           <td><a href="" class="btn btn-primary"><i data-feather="info"></i> </a></td>
+                           <td><a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',1)}}" class="btn btn-info mb-1"><i data-feather="file"></i>Laporan Aktualisasi</a><a href="" class="btn btn-primary"><i data-feather="info"></i> info</a></td>
                        </tr>
                     </tbody>
                 </table>

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('peserta', '\App\Http\Controllers\PesertaController');
         Route::resource('pelatihan', '\App\Http\Controllers\PelatihanController');
         Route::resource('anggaran', '\App\Http\Controllers\AnggaranController');
+        Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiAdminController');
     });
 });
 
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::resource('pelatihan_widyaiswara', '\App\Http\Controllers\PelatihanWidyaiswaraController');
         Route::get('/pelatihan_widyaiswaras/riwayat', [PelatihanWidyaiswaraController::class, 'riwayat'])->name('pelatihan_widyaiswara.riwayat');
         Route::resource('kegiatan_harian', '\App\Http\Controllers\KegiatanController');
+        Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiWidyaIswaraController');
     });
 });
 
@@ -43,5 +45,6 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
     Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
     Route::resource('kegiatan_harian_peserta', '\App\Http\Controllers\KegiatanPesertaController');
+    Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
  
