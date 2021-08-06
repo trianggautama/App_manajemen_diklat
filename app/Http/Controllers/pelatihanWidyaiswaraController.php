@@ -85,7 +85,7 @@ class pelatihanWidyaiswaraController extends Controller
         $data->status = 1;
         $data->update();
 
-        return back()->withSuccess('Data berhasil diverifikasi')
+        return back()->withSuccess('Data berhasil diverifikasi');
 
     }
 
