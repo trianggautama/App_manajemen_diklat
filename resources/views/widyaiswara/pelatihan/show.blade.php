@@ -88,7 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($laporan as $d)
+                        @foreach ($user as $d)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$d->user->nama}}</td>
