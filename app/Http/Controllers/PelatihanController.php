@@ -61,7 +61,7 @@ class PelatihanController extends Controller
     {
         $anggaran = Anggaran::wherePelatihanId($pelatihan->id)->get();
         $anggaran->map(function ($item) {
-            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
+            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota *$item->volume;
 
             return $item;
         });
