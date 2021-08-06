@@ -15,6 +15,7 @@ class AnggaranController extends Controller
      */
     public function index()
     {
+        
         $data = Anggaran::all();
         $data->map(function ($item) {
             $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
