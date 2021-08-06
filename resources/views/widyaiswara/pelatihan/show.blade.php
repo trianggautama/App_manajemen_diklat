@@ -91,12 +91,12 @@
                         @foreach ($user as $d)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$d->user->nama}}</td>
-                            <td>{{$d->user->nip}}</td>
-                            <td>{{$d->user->tempat_lahir}},
-                                {{carbon\carbon::parse($d->user->tanggal_lahir)->translatedFormat('d F Y')}}</td>
-                            <td>{{$d->user->no_hp}}</td>
-                            <td>{{$d->user->skpd->nama_skpd}}</td>
+                            <td>{{$d->nama}}</td>
+                            <td>{{$d->nip}}</td>
+                            <td>{{$d->tempat_lahir}},
+                                {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
+                            <td>{{$d->no_hp}}</td>
+                            <td>{{$d->skpd->nama_skpd}}</td>
                             <td><a href="{{asset('laporan/'.$d->laporan)}}" class="btn btn-info mb-1"><i
                                         data-feather="file"></i>Laporan Aktualisasi</a><a href=""
                                     class="btn btn-primary"><i data-feather="info"></i> info</a></td>
