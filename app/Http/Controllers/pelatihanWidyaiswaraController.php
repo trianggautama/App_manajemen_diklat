@@ -58,7 +58,7 @@ class pelatihanWidyaiswaraController extends Controller
     {
         $data = Pelatihan::findOrFail($id);
         $laporan = LaporanAktualisasi::wherePelatihanId($id)->get();
-        $user = User::wherePelatihan_id($id)->get(); 
+        $user = User::where('pelatihan_id',$id)->get(); 
         return view('widyaiswara.pelatihan.show', compact('data', 'laporan', 'user'));
     }
 
