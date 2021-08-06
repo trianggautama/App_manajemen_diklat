@@ -36,4 +36,9 @@ class Pelatihan extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function anggaran(): HasMany
+    {
+        return $this->hasMany(Anggaran::class);
+    }
 }

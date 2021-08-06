@@ -6,8 +6,15 @@
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header text-right">
-                Detail Data
+        <div class="card-header text-right">
+            <div class="row">
+                <div class="col-md">
+                    Detail Data
+                </div>
+                <div class="col-md">
+                    <a href="{{Route('report.pelatihan_detail',$pelatihan->id)}}" class="btn btn-outline-primary float-end" target="__blank"> <i data-feather="printer" width="20"></i> cetak detail permohonan</a>
+                </div>
+            </div> 
             </div>
             <div class="card-body">
                 <table class="table table-striped">

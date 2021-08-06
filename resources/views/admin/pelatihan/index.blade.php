@@ -11,6 +11,7 @@
                     data-bs-target="#default">
                     <i data-feather="plus" width="20"></i> Tambah Data
                 </button>
+                <a href="{{Route('report.pelatihan')}}" class=" btn btn-sm btn-outline-info float-end" target="__blank"><i data-feather="printer"></i> Cetak Data</a>
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
@@ -37,7 +38,7 @@
                             <td>{{$d->kuota}}</td>
                             <td>
                                 <a href="{{Route('userAdmin.pelatihan.show',$d->id)}}"
-                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="edit"></i>
+                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
                                     Detail</a>
                                 <a href="{{Route('userAdmin.pelatihan.edit',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="edit"></i>

@@ -61,9 +61,9 @@ halo
                                     <a href="{{Route('userAdmin.widyaiswara.index')}}">User Widyaiswara</a>
                                 </li>
 
-                                <li>
+                                <!-- <li>
                                     <a href="">User Peserta</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                         </li>

@@ -12,6 +12,7 @@
                         Anggaran
                     </div>
                     <div class="col-md">
+                        <a href="{{Route('report.anggaran')}}" class=" btn btn-sm btn-outline-info float-end" target="__blank"><i data-feather="printer"></i> Cetak Data</a>
                     </div>
                 </div>
             </div>

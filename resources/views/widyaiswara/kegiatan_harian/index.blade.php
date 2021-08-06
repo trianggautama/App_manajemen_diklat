@@ -2,16 +2,17 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Kegiatan Harian Pelatihan (Nama Pelatihan)</h3>
+        <h3>Kegiatan Harian Pelatihan {{$pelatihan->nama_pelatihan}}</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
             <div class="card-header">
-                Tabel Data
+                Tabel Data 
                 <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
                     data-bs-target="#default">
                     <i data-feather="plus" width="20"></i> Tambah Data
                 </button>
+                <a href="{{Route('report.kegiatan_pelatihan',$pelatihan->id)}}" class=" btn btn-sm btn-outline-info float-end" target="__blank"><i data-feather="printer"></i> Cetak Data</a>
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
@@ -32,9 +33,9 @@
                             <td>{{$d->materi}}</td>
                             <td>{{$d->waktu_kegiatan}} Menit</td>
                             <td>
-                                <a href="{{Route('userWidyaIswara.kegiatan_harian.show',$d->id)}}"
+                                <!-- <a href="{{Route('userWidyaIswara.kegiatan_harian.show',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Detail</a>
+                                    Detail</a> -->
                                 <a href="{{Route('userWidyaIswara.kegiatan_harian.edit',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="info"></i>
                                     Edit</a>
@@ -65,7 +66,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="pelatihan_id" value="{{$pelatihan_id}}" id="" required>
+                    <input type="hidden" name="pelatihan_id" value="{{$pelatihan->id}}" id="" required>
                     <div class="form-group">
                         <label for="">Tanggal Kegiatan</label>
                         <input type="date" name="tanggal_kegiatan" class="form-control" required>

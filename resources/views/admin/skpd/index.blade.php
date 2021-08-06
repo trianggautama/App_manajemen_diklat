@@ -11,7 +11,7 @@
                     data-bs-target="#default">
                     <i data-feather="plus" width="20"></i> Tambah Data
                 </button>
-
+                <a href="{{Route('report.skpd')}}" class=" btn btn-sm btn-outline-info" target="__blank"><i data-feather="printer"></i> Cetak Data</a>
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">

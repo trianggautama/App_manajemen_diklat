@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KegiatanPeserta;
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -14,10 +15,10 @@ class KegiatanController extends Controller
      */
     public function index($id)
     {
-        $pelatihan_id = $id;
-        $data = KegiatanPeserta::all();
+        $pelatihan = Pelatihan::findOrFail($id);
+        $data = KegiatanPeserta::where('pelatihan_id', $pelatihan->id)->get();
 
-        return view('widyaiswara.kegiatan_harian.index', compact('data', 'pelatihan_id'));
+        return view('widyaiswara.kegiatan_harian.index', compact('data', 'pelatihan'));
     }
 
     /**

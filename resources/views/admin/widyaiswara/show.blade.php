@@ -13,6 +13,7 @@
                    </div>
                    <div class="col-md d-flex flex-row-reverse">
                         <a href="{{Route('userAdmin.widyaiswara.index')}}" class="btn btn-secondary"><i data-feather="back"></i> Kembali</a>
+                        <a href="{{Route('report.widyaiswara.detail', $widyaiswara->id)}}" class=" btn btn-sm btn-outline-info" target="__blank"><i data-feather="printer"></i> Cetak Data</a>
                    </div>
                </div>
             </div>
@@ -56,7 +57,7 @@
                 Pelatihan
             </div>
             <div class="card-body">
-            <table class='table table-striped' id="table1">
+                <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -69,15 +70,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <tr>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                       </tr>
+                        @foreach ($pelatihan as $d)
+
+                        <tr> 
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$d->nama_pelatihan}}</td>
+                            <td>{{$d->jenis_diklat->jenis_diklat}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_mulai)->translatedFormat('d F Y')}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_selesai)->translatedFormat('d F Y')}}</td>
+                            <td>{{$d->kuota}}</td>
+                            <td>
+                                <a href="{{Route('userAdmin.pelatihan.show',$d->id)}}"
+                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="edit"></i>
+                                    Detail</a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

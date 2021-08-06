@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelatihan;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -53,7 +54,9 @@ class WidyaiswaraController extends Controller
      */
     public function show(User $widyaiswara)
     {
-        return view('admin.widyaiswara.show', compact('widyaiswara'));
+        $pelatihan  = Pelatihan::where('user_id',$widyaiswara->id)->latest()->get();
+
+        return view('admin.widyaiswara.show', compact('widyaiswara','pelatihan'));
     }
 
     /**

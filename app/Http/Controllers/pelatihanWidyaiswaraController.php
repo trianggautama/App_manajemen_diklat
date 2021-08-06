@@ -6,6 +6,7 @@ use App\Models\LaporanAktualisasi;
 use App\Models\Pelatihan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class pelatihanWidyaiswaraController extends Controller
 {
@@ -16,7 +17,7 @@ class pelatihanWidyaiswaraController extends Controller
      */
     public function index()
     {
-        $data = Pelatihan::all();
+        $data = Pelatihan::where('user_id', Auth    ::user()->id)->latest()->get();
         return view('widyaiswara.pelatihan.index', compact('data'));
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\LaporanAktualisasiPesertaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PelatihanWidyaiswaraController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -62,3 +63,14 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
 
     Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
+
+Route::prefix('/report')->name('report.')->group(function () {
+    Route::get('/skpd', [ReportController::class, 'skpd'])->name('skpd');
+    Route::get('/penyakit', [ReportController::class, 'penyakit'])->name('penyakit');
+    Route::get('/widyaiswara', [ReportController::class, 'widyaiswara'])->name('widyaiswara');
+    Route::get('/pelatihan', [ReportController::class, 'pelatihan'])->name('pelatihan');
+    Route::get('/anggaran', [ReportController::class, 'anggaran'])->name('anggaran');
+    Route::get('/widyaiswara/{id}', [ReportController::class, 'widyaiswara_detail'])->name('widyaiswara.detail');
+    Route::get('/pelatihan/{id}', [ReportController::class, 'pelatihan_detail'])->name('pelatihan_detail');
+    Route::get('/kegiatan_pelatihan/{id}', [ReportController::class, 'kegiatan_pelatihan'])->name('kegiatan_pelatihan');
+}); 

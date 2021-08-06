@@ -45,7 +45,7 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         $req = $request->all();
-        $req['user_id'] = Auth::user()->id;
+        // $req['user_id'] = Auth::user()->id;
         $data = Pelatihan::create($req);
 
         return back()->withSuccess('Data berhasil disimpan');
