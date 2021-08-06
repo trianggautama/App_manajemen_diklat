@@ -84,7 +84,7 @@
                             <th>Tempat, Tanggal lahir</th>
                             <th>No Hp</th>
                             <th>SKPD</th>
-                            <th>Aksi</th>
+                            <!-- <th>Aksi</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -97,9 +97,10 @@
                                 {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->no_hp}}</td>
                             <td>{{$d->skpd->nama_skpd}}</td>
-                            <td><a href="{{asset('laporan/'.$d->laporan)}}" class="btn btn-info mb-1"><i
-                                        data-feather="file"></i>Laporan Aktualisasi</a><a href=""
-                                    class="btn btn-primary"><i data-feather="info"></i> info</a></td>
+                            <!-- <td><a href="{{asset('laporan/'.$d->laporan)}}" class="btn btn-info mb-1"><i
+                                        data-feather="file"></i>Laporan Aktualisasi</a>
+                            <a href=""
+                                    class="btn btn-primary"><i data-feather="info"></i> info</a></td> -->
                         </tr>
                         @endforeach
                     </tbody>

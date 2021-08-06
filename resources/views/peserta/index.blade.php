@@ -14,7 +14,7 @@
                     eligendi esse soluta earum?</p>
             </div>
         </div>
-        <!-- <div class="card">
+        <div class="card">
             <div class="card-header text-right">
                 <div class="row">
                     <div class="col-md">
@@ -63,7 +63,7 @@
                     </tr>
                 </table>
             </div>
-        </div> -->
+        </div>
     </section>
 </div>
 @endsection
