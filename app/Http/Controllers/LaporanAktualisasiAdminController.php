@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LaporanAktualisasi;
 use Illuminate\Http\Request;
 
 class LaporanAktualisasiAdminController extends Controller
@@ -13,7 +14,8 @@ class LaporanAktualisasiAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.laporan_aktualisasi.index');
+        $data = LaporanAktualisasi::all();
+        return view('admin.laporan_aktualisasi.index', compact('data'));
     }
 
     /**
@@ -45,7 +47,8 @@ class LaporanAktualisasiAdminController extends Controller
      */
     public function show($id)
     {
-        return view('admin.laporan_aktualisasi.show');
+        $data = LaporanAktualisasi::findOrFail($id);
+        return view('admin.laporan_aktualisasi.show', compact('data'));
     }
 
     /**

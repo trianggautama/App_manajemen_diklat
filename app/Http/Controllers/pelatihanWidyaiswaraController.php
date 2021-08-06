@@ -80,7 +80,13 @@ class pelatihanWidyaiswaraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = LaporanAktualisasi::findOrFail($id)->first();
+
+        $data->status = 1;
+        $data->update();
+
+        return back()->withSuccess('Data berhasil diverifikasi')
+
     }
 
     /**

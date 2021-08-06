@@ -5,14 +5,15 @@
         <h3>Detail Kegiatan Harian </h3>
     </div>
     <section class="section mt-4">
-        <div class="card"> 
+        <div class="card">
             <div class="card-header">
-              <div class="row">
-                  <div class="col-md">  Detail Data</div>
-                  <div class="col-md">
-                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index')}}" class="btn btn-secondary float-end mx-1"> Kembali</a>
-                  </div>
-              </div>
+                <div class="row">
+                    <div class="col-md"> Detail Data</div>
+                    <div class="col-md">
+                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index')}}"
+                            class="btn btn-secondary float-end mx-1"> Kembali</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -42,10 +43,10 @@
                         Modul Pembelajaran
                     </div>
                     <div class="col-md">
-                            <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
-                                data-bs-target="#default">
-                                <i data-feather="plus" width="20"></i> Tambah Data
-                            </button>
+                        <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
+                            data-bs-target="#default">
+                            <i data-feather="plus" width="20"></i> Tambah Data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -61,10 +62,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <tr>
-                           <td colspan="4">-</td>
-                           <td><a href="" class="btn btn-primary"><i data-feather="info"></i> </a></td>
-                       </tr>
+                        <tr>
+                            <td colspan="4">-</td>
+                            <td><a href="" class="btn btn-primary"><i data-feather="info"></i> </a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -74,8 +75,7 @@
 
 
 <!--Basic Modal -->
-<div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="default"
-    aria-hidden="true">
+<div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="default" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">

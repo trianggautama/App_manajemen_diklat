@@ -13,7 +13,7 @@
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th>No</th> 
+                            <th>No</th>
                             <th>Nama Pelatihan</th>
                             <th>Peserta</th>
                             <th>Judul Laporan</th>
@@ -22,18 +22,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr> 
-                            <td>1</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                        @foreach ($data as $d)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$d->pelatihan->nama_pelatihan}}</td>
+                            <td>{{$d->user->nama}}</td>
+                            <td>{{$d->judul}}</td>
+                            <td>
+                                @if ($d->status == 0)
+
+                                <div class="text-warning"> Belum Diverifikasi </div>
+                                @else
+                                <div class="text-primary"> Sudah Diverifikasi </div>
+
+                                @endif
+                            </td>
                             <td class="text-center">
                                 <a href="{{Route('userAdmin.laporan_aktualisasi.show',1)}}"
                                     class="btn icon icon-left btn-primary"><i data-feather="info"></i>
                                     Detail</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
