@@ -6,7 +6,7 @@
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header"> 
+            <div class="card-header">
                 Tabel Data
             </div>
             <div class="card-body">
@@ -17,21 +17,24 @@
                             <th>Tanggal Kegiatan</th>
                             <th>Materi</th>
                             <th>Waktu kegiatan</th>
-                            <th>Aksi</th>
+                            {{-- <th>Aksi</th> --}}
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($data as $d)
+
                         <tr>
-                            <td>1</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>
-                                <a href="{{Route('userPeserta.kegiatan_harian_peserta.show','1')}}"
-                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Detail</a>
-                            </td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_kegiatan)->translatedFormat('d F Y')}}</td>
+                            <td>{{$d->materi}}</td>
+                            <td>{{$d->waktu_kegiatan}} Menit</td>
+                            {{-- <td>
+                                <a href="{{Route('userPeserta.kegiatan_harian_peserta.show',$d->id)}}"
+                            class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
+                            Detail</a>
+                            </td> --}}
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

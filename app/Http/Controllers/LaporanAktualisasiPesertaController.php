@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LaporanAktualisasi;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanAktualisasiPesertaController extends Controller
 {
@@ -13,7 +16,9 @@ class LaporanAktualisasiPesertaController extends Controller
      */
     public function index()
     {
-        return view('peserta.laporan_aktualisasi.index');
+        $id = Auth::id();
+        $data = LaporanAktualisasi::whereUserId($id)->first();
+        return view('peserta.laporan_aktualisasi.index', compact('data'));
     }
 
     /**
@@ -34,7 +39,22 @@ class LaporanAktualisasiPesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $input = $request->all();
+        $input['user_id'] = $user->id;
+        $input['pelatihan_id'] = $user->pelatihan_id;
+        if (isset($request->laporan)) {
+            $file = $request->file('laporan');
+
+            $file_name = time() . "_" . $file->getClientOriginalName();
+
+            $file->move('laporan', $file_name);
+            $input['laporan'] = $file_name;
+        }
+
+        LaporanAktualisasi::create($input);
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -56,7 +76,9 @@ class LaporanAktualisasiPesertaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = LaporanAktualisasi::findOrFail($id);
+
+        return view('peserta.laporan_aktualisasi.edit', compact('data'));
     }
 
     /**
@@ -68,7 +90,10 @@ class LaporanAktualisasiPesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = LaporanAktualisasi::findOrFail($id);
+
+        return redirect()->route('userPeserta.laporan_aktualisasi.index');
+
     }
 
     /**
@@ -79,6 +104,17 @@ class LaporanAktualisasiPesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = LaporanAktualisasi::findOrFail($id);
+
+        try {
+            $data->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\KegiatanPesertaController;
 use App\Http\Controllers\LaporanAktualisasiPesertaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
@@ -52,6 +53,12 @@ Route::group(['middleware' => ['widyaiswara']], function () {
 Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
     Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
-    Route::resource('kegiatan_harian_peserta', '\App\Http\Controllers\KegiatanPesertaController');
+    Route::resource('kegiatan_harian_peserta', '\App\Http\Controllers\KegiatanPesertaController')->except([
+        'index',
+    ]);
+    Route::prefix('/kegiatan_harian_peserta')->name('kegiatan_harian_peserta.')->group(function () {
+        Route::get('/index/{id}', [KegiatanPesertaController::class, 'index'])->name('index');
+    });
+
     Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
