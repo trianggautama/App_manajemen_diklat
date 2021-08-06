@@ -60,7 +60,7 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::prefix('/kegiatan_harian_peserta')->name('kegiatan_harian_peserta.')->group(function () {
         Route::get('/index/{id}', [KegiatanPesertaController::class, 'index'])->name('index');
     });
-
+ 
     Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
 

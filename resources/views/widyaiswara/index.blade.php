@@ -13,7 +13,7 @@
                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit facere ratione ducimus ullam dolorum expedita obcaecati accusamus non quae quisquam corporis dignissimos, sequi repellendus ut, unde eligendi esse soluta earum?</p>
                         </div>
                     </div>
-                    <div class="card">
+                    <!-- <div class="card">
                         <div class="card-header">
                             <b>Pelatihan Berlangsung</b>
                         </div>
@@ -37,7 +37,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                 </section>
             </div>
 @endsection

@@ -12,7 +12,7 @@ class KegiatanController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index($id)
     {
         $pelatihan = Pelatihan::findOrFail($id);

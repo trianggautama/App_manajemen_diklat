@@ -2,7 +2,7 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Kegiatan Harian Pelatihan (Nama Pelatihan)</h3>
+        <h3>Kegiatan Harian Pelatihan {{$pelatihan->nama_pelatihan}}</h3>
     </div>
     <section class="section mt-4">
         <div class="card">

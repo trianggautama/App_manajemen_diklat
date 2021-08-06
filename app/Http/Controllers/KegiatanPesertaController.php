@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KegiatanPeserta;
+use App\Models\Pelatihan;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,11 @@ class KegiatanPesertaController extends Controller
      */
     public function index($id)
     {
-        $pelatihan_id = $id;
-        $data = KegiatanPeserta::all();
-        return view('peserta.kegiatan.index', compact('pelatihan_id', 'data'));
-    }
+        $pelatihan = Pelatihan::findOrFail($id);
+        $data      = KegiatanPeserta::where('pelatihan_id', $pelatihan->id)->get();
+
+        return view('peserta.kegiatan.index', compact('pelatihan', 'data'));
+    } 
 
     /**
      * Show the form for creating a new resource.

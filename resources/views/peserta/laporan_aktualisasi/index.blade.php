@@ -90,8 +90,7 @@
                         <td>:
                         </td>
                         <td>
-                            <a href="" class="btn btn-primary"><i data-feather="paperclip" width="20"></i> File
-                                Lampiran</a>
+                            -
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +102,7 @@
                         <td width="20%">Status Verif</td>
                         <td>:
                         <td>
-                            <div class="text-warning"> Belum Diverifikasi </div>
+                            <div class="text-warning"> Belum di input </div>
                         </td>
                     </tr>
                 </table>
