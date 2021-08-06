@@ -22,19 +22,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($data as $d)
+
                         <tr>
-                            <td>1</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$d->nama_pelatihan}}</td>
+                            <td>{{$d->jenis_diklat->jenis_diklat}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_mulai)->translatedFormat('d F Y')}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_selesai)->translatedFormat('d F Y')}}</td>
+                            <td>{{$d->kuota}}</td>
                             <td>
-                                <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.show','1')}}"
+                                <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.show',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
                                     Detail</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

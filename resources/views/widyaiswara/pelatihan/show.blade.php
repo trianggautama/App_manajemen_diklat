@@ -5,53 +5,56 @@
         <h3>Pelatihan / diklat / Detail</h3>
     </div>
     <section class="section mt-4">
-        <div class="card"> 
+        <div class="card">
             <div class="card-header">
-              <div class="row">
-                  <div class="col-md">  Detail Data</div>
-                  <div class="col-md">
-                        <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.index')}}" class="btn btn-secondary float-end mx-1"> Kembali</a>
-                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index')}}" class="btn btn-info float-end"> Kegiatan Harian</a>
-                  </div>
-              </div>
+                <div class="row">
+                    <div class="col-md"> Detail Data</div>
+                    <div class="col-md">
+                        <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.index')}}"
+                            class="btn btn-secondary float-end mx-1"> Kembali</a>
+                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index',$data->id)}}"
+                            class="btn btn-info float-end">
+                            Kegiatan Harian</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
                         <td width="20%">Nama Pelatihan</td>
-                        <td>: -</td>
+                        <td>: {{$data->nama_pelatihan}}</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td width="20%">Jenis Pelatihan</td>
-                        <td>: -</td>
+                        <td>: {{$data->jenis_diklat->jenis_diklat}}</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td width="20%">tanggal Mulai</td>
-                        <td>: -
+                        <td>: {{carbon\carbon::parse($data->tanggal_mulai)->translatedFormat('d F Y')}}
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td width="20%">Tanggal Selesai</td>
                         <td>:
-                            
+                            {{carbon\carbon::parse($data->tanggal_selesai)->translatedFormat('d F Y')}}
                         <td></td>
                     </tr>
                     <tr>
                         <td width="20%">Widyaiswara</td>
-                        <td>:</td>
+                        <td>: {{$data->user->nama}}</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td width="20%">Keterangan</td>
-                        <td>:</td>
+                        <td>: {{$data->keterangan}}</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td width="20%">Kuota Peserta</td>
-                        <td>:</td>
+                        <td>: {{$data->kuota}}</td>
                         <td></td>
                     </tr>
                 </table>
@@ -85,10 +88,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <tr>
-                           <td colspan="6">-</td>
-                           <td><a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',1)}}" class="btn btn-info mb-1"><i data-feather="file"></i>Laporan Aktualisasi</a><a href="" class="btn btn-primary"><i data-feather="info"></i> info</a></td>
-                       </tr>
+                        <tr>
+                            <td colspan="6">-</td>
+                            <td><a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',1)}}"
+                                    class="btn btn-info mb-1"><i data-feather="file"></i>Laporan Aktualisasi</a><a
+                                    href="" class="btn btn-primary"><i data-feather="info"></i> info</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

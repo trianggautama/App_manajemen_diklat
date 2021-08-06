@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\LaporanAktualisasiPesertaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PelatihanWidyaiswaraController;
@@ -36,8 +38,14 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::get('/profil', [MainController::class, 'widyaiswara_profil'])->name('profil');
         Route::resource('pelatihan_widyaiswara', '\App\Http\Controllers\PelatihanWidyaiswaraController');
         Route::get('/pelatihan_widyaiswaras/riwayat', [PelatihanWidyaiswaraController::class, 'riwayat'])->name('pelatihan_widyaiswara.riwayat');
-        Route::resource('kegiatan_harian', '\App\Http\Controllers\KegiatanController');
-        Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiWidyaIswaraController');
+        Route::resource('kegiatan_harian', KegiatanController::class)->except([
+            'index',
+        ]);
+
+        Route::prefix('/kegiatan_harian')->name('kegiatan_harian.')->group(function () {
+            Route::get('/index/{id}', [KegiatanController::class, 'index'])->name('index');
+        });
+        Route::resource('laporan_aktualisasi', LaporanAktualisasiPesertaController::class);
     });
 });
 
@@ -47,4 +55,3 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::resource('kegiatan_harian_peserta', '\App\Http\Controllers\KegiatanPesertaController');
     Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
- 

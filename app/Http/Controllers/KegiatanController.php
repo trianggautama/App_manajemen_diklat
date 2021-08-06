@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KegiatanPeserta;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -11,9 +12,12 @@ class KegiatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('widyaiswara.kegiatan_harian.index');
+        $pelatihan_id = $id;
+        $data = KegiatanPeserta::all();
+
+        return view('widyaiswara.kegiatan_harian.index', compact('data', 'pelatihan_id'));
     }
 
     /**
@@ -34,7 +38,9 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        KegiatanPeserta::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -45,7 +51,7 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        return view('widyaiswara.kegiatan_harian.show');
+        return view('widyaiswara.kegiatan.show');
     }
 
     /**
@@ -56,7 +62,9 @@ class KegiatanController extends Controller
      */
     public function edit($id)
     {
-        return view('widyaiswara.kegiatan_harian.edit');
+        $data = KegiatanPeserta::findOrFail($id);
+
+        return view('widyaiswara.kegiatan.edit', compact('data'));
     }
 
     /**
@@ -68,7 +76,10 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = KegiatanPeserta::findOrFail($id);
+        $data->update($request->all());
+
+        return redirect()->route('userWidyaIswara.kegiata_harian.index', $request->pelatihan_id)->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -79,6 +90,17 @@ class KegiatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = KegiatanPeserta::findOrFail($id);
+
+        try {
+            $data->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

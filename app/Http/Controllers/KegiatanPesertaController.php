@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KegiatanPeserta;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class KegiatanPesertaController extends Controller
@@ -11,9 +13,11 @@ class KegiatanPesertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('peserta.kegiatan.index');
+        $pelatihan_id = $id;
+        $data = KegiatanPeserta::all();
+        return view('peserta.kegiatan.index', compact('pelatihan_id', 'data'));
     }
 
     /**
@@ -34,7 +38,9 @@ class KegiatanPesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        KegiatanPeserta::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -56,7 +62,9 @@ class KegiatanPesertaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = KegiatanPeserta::findOrFail($id);
+
+        return view('peserta.kegiatan.edit', compact('data'));
     }
 
     /**
@@ -68,7 +76,10 @@ class KegiatanPesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = KegiatanPeserta::findOrFail($id);
+        $data->update($request->all());
+
+        return redirect()->route('userWidyaIswara.kegiata_harian.index', $request->pelatihan_id)->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -79,6 +90,17 @@ class KegiatanPesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = KegiatanPeserta::findOrFail($id);
+
+        try {
+            $data->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

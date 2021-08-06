@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 
 class pelatihanWidyaiswaraController extends Controller
@@ -13,14 +14,14 @@ class pelatihanWidyaiswaraController extends Controller
      */
     public function index()
     {
-        return view('widyaiswara.pelatihan.index');
+        $data = Pelatihan::all();
+        return view('widyaiswara.pelatihan.index', compact('data'));
     }
 
     public function riwayat()
     {
         return view('widyaiswara.pelatihan.riwayat');
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +52,8 @@ class pelatihanWidyaiswaraController extends Controller
      */
     public function show($id)
     {
-        return view('widyaiswara.pelatihan.show');
+        $data = Pelatihan::findOrFail($id);
+        return view('widyaiswara.pelatihan.show', compact('data'));
     }
 
     /**
