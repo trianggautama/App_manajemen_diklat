@@ -77,14 +77,15 @@ class ReportController extends Controller
 
 
     public function pelatihan_detail($id)
-    {
+    { 
         $data   = Pelatihan::findOrFail($id);
         $anggaran = Anggaran::wherePelatihanId($data->id)->get();
         $anggaran->map(function ($item) {
             $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
 
             return $item;
-        });
+        }); 
+            
         $pdf    = PDF::loadView('report.pelatihan_detail', ['data'=>$data, 'anggaran'=>$anggaran]);
         $pdf->setPaper('a4', 'potrait'); 
         

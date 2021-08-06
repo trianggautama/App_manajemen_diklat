@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class pelatihanWidyaiswaraController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of t
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $data = Pelatihan::where('user_id', Auth    ::user()->id)->latest()->get();
+        $data = Pelatihan::where('user_id', Auth::user()->id)->latest()->get();
+
         return view('widyaiswara.pelatihan.index', compact('data'));
     }
 
@@ -57,7 +58,7 @@ class pelatihanWidyaiswaraController extends Controller
     {
         $data = Pelatihan::findOrFail($id);
         $laporan = LaporanAktualisasi::wherePelatihanId($id)->get();
-        $user = User::wherePelatihanId($id)->get();
+        $user = User::wherePelatihan_id($id)->get(); 
         return view('widyaiswara.pelatihan.show', compact('data', 'laporan', 'user'));
     }
 
