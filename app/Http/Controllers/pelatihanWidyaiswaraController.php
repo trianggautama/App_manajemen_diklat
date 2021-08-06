@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LaporanAktualisasi;
 use App\Models\Pelatihan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class pelatihanWidyaiswaraController extends Controller
@@ -53,7 +55,9 @@ class pelatihanWidyaiswaraController extends Controller
     public function show($id)
     {
         $data = Pelatihan::findOrFail($id);
-        return view('widyaiswara.pelatihan.show', compact('data'));
+        $laporan = LaporanAktualisasi::wherePelatihanId($id)->get();
+        $user = User::wherePelatihanId($id)->get();
+        return view('widyaiswara.pelatihan.show', compact('data', 'laporan', 'user'));
     }
 
     /**
