@@ -110,11 +110,11 @@ halo
                                 <li>
                                     <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.index')}}">Agenda Pelatihan</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="{{Route('userWidyaIswara.pelatihan_widyaiswara.riwayat')}}">riwayat Pelatihan</a>
-                                </li>
+                                </li> -->
                             </ul>
-
+ 
                         </li>
                         @endif 
                         @if(Auth::user()->role == 3)
