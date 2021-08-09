@@ -2,8 +2,8 @@
 @section('content')
 <div class="main-content container-fluid">
                 <div class="page-title">
-                    <h3>Dashboard</h3>
-                    <p class="text-subtitle text-muted">A good dashboard to display your statistics</p>
+                    <h3>Beranda</h3>
+                    <p class="text-subtitle text-muted">Aplikasi Manajemen Diklat</p>
                 </div>
                 <section class="section">
                     <div class="row mb-2">
@@ -14,7 +14,7 @@
                                         <div class='px-3 py-3 d-flex justify-content-between'>
                                             <h3 class='card-title'>User Admin</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>5 </p>
+                                                <p>{{$user}}</p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -31,7 +31,7 @@
                                         <div class='px-3 py-3 d-flex justify-content-between'>
                                             <h3 class='card-title'>Widyaiswara</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>20 </p>
+                                                <p>{{$widyaiswara}}</p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -48,7 +48,7 @@
                                         <div class='px-3 py-3 d-flex justify-content-between'>
                                             <h3 class='card-title'>pelatihan</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>17 </p>
+                                                <p>{{$pelatihan}}</p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">
@@ -65,7 +65,7 @@
                                         <div class='px-3 py-3 d-flex justify-content-between'>
                                             <h3 class='card-title'>Perpustakaan</h3>
                                             <div class="card-right d-flex align-items-center">
-                                                <p>42 </p>
+                                                <p>{{$laporan}}</p>
                                             </div>
                                         </div>
                                         <div class="chart-wrapper">

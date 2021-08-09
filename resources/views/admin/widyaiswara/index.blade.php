@@ -36,14 +36,15 @@
                                 {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->jenis_kelamin}}</td>
                             <td>
-                                <a href="{{Route('userAdmin.widyaiswara.show',$d->id)}}"
-                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Lihat</a>
-                                <a href="{{Route('userAdmin.widyaiswara.edit',$d->id)}}"
-                                    class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
-                                    Edit</a>
-                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
-                                    Hapus</a>
+                                <form action="{{Route('userAdmin.widyaiswara.destroy',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{Route('userAdmin.widyaiswara.show',$d->id)}}"  class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i> Lihat</a>
+                                    <a href="{{Route('userAdmin.widyaiswara.edit', $d->id)}}"
+                                        class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
+                                        Edit</a>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i data-feather="delete"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

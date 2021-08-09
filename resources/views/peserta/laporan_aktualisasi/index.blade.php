@@ -13,8 +13,12 @@
                         Detail Pelatihan
                     </div>
                     <div class="col-md ">
-                        <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
+                    @isset($data)
+                        -
+                    @else
+                    <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
                             data-bs-target="#default"> <i data-feather="plus" width="20"></i> Tambah Data </button>
+                    @endisset
                     </div>
                 </div>
             </div>

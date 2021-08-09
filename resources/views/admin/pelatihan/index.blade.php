@@ -37,14 +37,15 @@
                             <td>{{carbon\carbon::parse($d->tanggal_selesai)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->kuota}}</td>
                             <td>
-                                <a href="{{Route('userAdmin.pelatihan.show',$d->id)}}"
-                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Detail</a>
-                                <a href="{{Route('userAdmin.pelatihan.edit',$d->id)}}"
-                                    class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
-                                    Edit</a>
-                                <a href="#" class="btn  icon icon-left btn-danger"><i data-feather="delete"></i>
-                                    Hapus</a>
+                                <form action="{{Route('userAdmin.pelatihan.destroy',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{Route('userAdmin.pelatihan.show',$d->id)}}"  class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i> Lihat</a>
+                                    <a href="{{Route('userAdmin.pelatihan.edit', $d->id)}}"
+                                        class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
+                                        Edit</a>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i data-feather="delete"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

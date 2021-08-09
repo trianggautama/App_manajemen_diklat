@@ -81,7 +81,7 @@
                             <th>uraian</th>
                             <th>Anggaran / orang</th>
                             <th>Volume</th>
-                            <th>Total (Orang * volume)</th>
+                            <th>Total (Anggaran * Orang * volume)</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -96,11 +96,14 @@
                             <td>{{$d->volume}}</td>
                             <td>Rp.{{$d->total}}</td>
                             <td>
-                                <a href="{{Route('userAdmin.anggaran.edit',$d->id)}}"
-                                    class="btn icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
-                                    Edit</a>
-                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
-                                    Hapus</a>
+                                <form action="{{Route('userAdmin.anggaran.destroy',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{Route('userAdmin.anggaran.edit', $d->id)}}"
+                                        class="btn icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
+                                        Edit</a>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i data-feather="delete"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -147,12 +150,18 @@
                             <td>{{$d->no_hp}}</td>
                             <td>{{$d->skpd->nama_skpd}}</td>
                             <td>
-                                <a href="{{Route('userAdmin.peserta.edit',$d->id)}}"
-                                    class="btn icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
-                                    Edit</a>
-                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
-                                    Hapus</a>
-                            </td>
+                                <form action="{{Route('userAdmin.peserta.destroy',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{Route('userAdmin.peserta.show', $d->id)}}"
+                                        class="btn icon icon-left btn-info mb-1"><i data-feather="info"></i>
+                                        Detail</a>
+                                    <a href="{{Route('userAdmin.peserta.edit', $d->id)}}"
+                                        class="btn icon icon-left btn-primary mb-1"><i data-feather="edit"></i>
+                                        Edit</a>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i data-feather="delete"></i> Hapus</button>
+                                </form>
+                            </td> 
                         </tr>
                         @endforeach
                     </tbody>

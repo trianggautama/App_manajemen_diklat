@@ -26,12 +26,15 @@
                         <tr> 
                             <td>{{$loop->iteration}}</td>
                             <td>{{$d->jenis_diklat}}</td>
-                            <td class="text-center">
-                                <a href="{{Route('userAdmin.jenis_diklat.edit',$d->id)}}"
-                                    class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
-                                    Edit</a>
-                                <a href="#" class="btn icon icon-left btn-danger"><i data-feather="delete"></i>
-                                    Hapus</a>
+                            <td>
+                                <form action="{{Route('userAdmin.jenis_diklat.destroy',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{Route('userAdmin.jenis_diklat.edit', $d->id)}}"
+                                        class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
+                                        Edit</a>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i data-feather="delete"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

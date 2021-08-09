@@ -81,9 +81,8 @@ class AnggaranController extends Controller
     public function update(Request $request, Anggaran $anggaran)
     {
         $anggaran->update($request->all());
-
-        return redirect()->route('userAdmin.anggaran.index')->withSuccess('Data berhasil diubah');
-    }
+        return redirect()->route('userAdmin.pelatihan.show',$anggaran->pelatihan_id)->withSuccess('Data berhasil diubah');
+    } 
 
     /**
      * Remove the specified resource from storage.

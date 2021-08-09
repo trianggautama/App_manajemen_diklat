@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skpd;
 use App\Models\User;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class PesertaController extends Controller
+class PesertaWidyaiswaraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class PesertaController extends Controller
      */
     public function index()
     {
-        $data = User::whereRole(2)->get();
-        return view('admin.peserta.index', compact('data'));
+        //
     }
 
     /**
@@ -39,12 +35,7 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        $req = $request->all();
-        $req['username'] = $request->nip;
-        $req['password'] = Hash::make($request->nip);
-        $data = User::create($req);
-
-        return back()->withSuccess('Data berhasil disimpan');
+        //
     }
 
     /**
@@ -56,7 +47,7 @@ class PesertaController extends Controller
     public function show($id)
     {
         $peserta = User::findOrFail($id);
-        return view('admin.peserta.show', compact('peserta'));
+        return view('widyaiswara.peserta.show',compact('peserta'));
     }
 
     /**
@@ -67,9 +58,7 @@ class PesertaController extends Controller
      */
     public function edit($id)
     {
-        $skpd       = Skpd::latest()->get();
-        $peserta    = User::findOrFail($id);
-        return view('admin.peserta.edit', compact('peserta','skpd'));
+        //
     }
 
     /**
@@ -81,14 +70,7 @@ class PesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $peserta = User::findOrFail($id);
-        $req = $request->except('password');
-        if (isset($request->password)) {
-            $req['password'] = Hash::make($request->password);
-        }
-
-        $peserta->update($req);
-        return redirect()->route('userAdmin.pelatihan.show',$peserta->pelatihan_id)->withSuccess('Data berhasil diubah');
+        //
     }
 
     /**
@@ -99,16 +81,6 @@ class PesertaController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $peserta = User::findOrFail($id);
-            $peserta->delete();
-            return back()->withSuccess('Data berhasil dihapus');
-        } catch (QueryException $e) {
-
-            if ($e->getCode() == "23000") {
-                return back()->withError('Data gagal dihapus');
-            }
-        }
-
+        //
     }
 }

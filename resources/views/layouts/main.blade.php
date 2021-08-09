@@ -10,7 +10,8 @@ halo
     <link rel="stylesheet" href="{{asset('admin/assets/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/simple-datatables/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/chartjs/Chart.min.css')}}">
-
+    <link rel="stylesheet" href="{{asset('iziToast/iziToast.css')}}" />
+    <link rel="stylesheet" href="{{asset('iziToast/iziToast.min.css')}}" />
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css/app.css')}}">
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.svg')}}" type="image/x-icon">
@@ -218,8 +219,10 @@ halo
     <script src="{{asset('admin/assets/vendors/chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/pages/dashboard.js')}}"></script>
-
+    <script src="{{asset('iziToast/iziToast.js')}}"></script>
     <script src="{{asset('admin/assets/js/main.js')}}"></script>
+    @include('layouts.alert')
+    @include('layouts.alert_error')
     @yield('script')
 </body>
 

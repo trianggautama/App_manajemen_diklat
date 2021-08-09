@@ -29,6 +29,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('widyaiswara', '\App\Http\Controllers\WidyaiswaraController');
         Route::resource('peserta', '\App\Http\Controllers\PesertaController');
         Route::resource('pelatihan', '\App\Http\Controllers\PelatihanController');
+        Route::resource('peserta', '\App\Http\Controllers\PesertaController');
         Route::resource('anggaran', '\App\Http\Controllers\AnggaranController');
         Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiAdminController');
     });
@@ -43,7 +44,7 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::resource('kegiatan_harian', KegiatanController::class)->except([
             'index',
         ]);
-
+        Route::resource('peserta_widyaiswara', '\App\Http\Controllers\PesertaWidyaiswaraController');
         Route::prefix('/kegiatan_harian')->name('kegiatan_harian.')->group(function () {
             Route::get('/index/{id}', [KegiatanController::class, 'index'])->name('index');
         });
