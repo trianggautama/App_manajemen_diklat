@@ -75,6 +75,16 @@ class ReportController extends Controller
         return $pdf->stream('Laporan Widyaiswara Detail.pdf');
     }
 
+    public function biodata_peserta($id)
+    {
+        $data   = User::findOrFail($id);
+        // $pelatihan  = Pelatihan::where('user_id',$id)->latest()->get();
+        $pdf    = PDF::loadView('report.biodata_peserta', ['data'=>$data]);
+        $pdf->setPaper('a4', 'potrait'); 
+        
+        return $pdf->stream('Laporan Biodata Peserta.pdf');
+    }
+
 
     public function pelatihan_detail($id)
     { 

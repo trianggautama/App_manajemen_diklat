@@ -13,6 +13,7 @@
                    </div>
                    <div class="col-md d-flex flex-row-reverse">
                         <a href="{{Route('userAdmin.pelatihan.show',$peserta->pelatihan_id)}}" class="btn btn-secondary"><i data-feather="back"></i> Kembali</a>
+                        <a href="{{Route('report.biodata_peserta',$peserta->pelatihan_id)}}" class="btn btn-primary"><i data-feather="printer "></i> Cetak Data</a>
                    </div>
                </div>
             </div>

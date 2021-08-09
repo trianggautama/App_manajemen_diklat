@@ -75,4 +75,5 @@ Route::prefix('/report')->name('report.')->group(function () {
     Route::get('/widyaiswara/{id}', [ReportController::class, 'widyaiswara_detail'])->name('widyaiswara.detail');
     Route::get('/pelatihan/{id}', [ReportController::class, 'pelatihan_detail'])->name('pelatihan_detail');
     Route::get('/kegiatan_pelatihan/{id}', [ReportController::class, 'kegiatan_pelatihan'])->name('kegiatan_pelatihan');
+    Route::get('/biodata_peserta/{id}', [ReportController::class, 'biodata_peserta'])->name('biodata_peserta');
 }); 
