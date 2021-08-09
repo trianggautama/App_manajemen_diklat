@@ -65,7 +65,7 @@ class KegiatanController extends Controller
     {
         $data = KegiatanPeserta::findOrFail($id);
 
-        return view('widyaiswara.kegiatan.edit', compact('data'));
+        return view('widyaiswara.kegiatan_harian.edit', compact('data'));
     }
 
     /**
@@ -80,7 +80,7 @@ class KegiatanController extends Controller
         $data = KegiatanPeserta::findOrFail($id);
         $data->update($request->all());
 
-        return redirect()->route('userWidyaIswara.kegiata_harian.index', $request->pelatihan_id)->withSuccess('Data berhasil diubah');
+        return redirect()->route('userWidyaIswara.kegiatan_harian.index', $data->pelatihan_id)->withSuccess('Data berhasil diubah');
     }
 
     /**

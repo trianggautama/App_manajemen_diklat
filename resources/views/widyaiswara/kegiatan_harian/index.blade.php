@@ -33,15 +33,19 @@
                             <td>{{$d->materi}}</td>
                             <td>{{$d->waktu_kegiatan}} Menit</td>
                             <td>
+                                <form action="{{Route('userWidyaIswara.kegiatan_harian.destroy',$d->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
                                 <!-- <a href="{{Route('userWidyaIswara.kegiatan_harian.show',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
                                     Detail</a> -->
                                 <a href="{{Route('userWidyaIswara.kegiatan_harian.edit',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="info"></i>
                                     Edit</a>
-                                <a href="{{Route('userWidyaIswara.kegiatan_harian.show',$d->id)}}"
+                                <button type="submit"
                                     class="btn btn-sm icon icon-left btn-danger mb-1"><i data-feather="info"></i>
-                                    Hapus</a>
+                                    Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
