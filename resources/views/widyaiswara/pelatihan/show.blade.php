@@ -82,27 +82,28 @@
                             <th>Nama </th>
                             <th>NIP</th>
                             <th>Tempat, Tanggal lahir</th>
-                            <th>No Hp</th>
                             <th>SKPD</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user as $d)
+                        @foreach ($user as $d) 
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$d->nama}}</td>
                             <td>{{$d->nip}}</td>
                             <td>{{$d->tempat_lahir}},
                                 {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
-                            <td>{{$d->no_hp}}</td>
                             <td>{{$d->skpd->nama_skpd}}</td>
-                            <td>
-                                <a href="{{Route('userWidyaIswara.peserta_widyaiswara.show',$d->id)}}" class="btn btn-info mb-1"><i  data-feather="info"></i>Detail</a>
+                            <td> 
+                                <a href="{{Route('userWidyaIswara.peserta_widyaiswara.show',$d->id)}}" class="btn btn-primary mb-1"><i  data-feather="user"></i> biodata</a>
+                                @if($d->laporan)
+                                <a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',$d->laporan->id)}}" class="btn btn-info mb-1"><i  data-feather="book"></i> laporan aktualisasi</a>
+                                @endif 
                         </tr>
                         @endforeach
                     </tbody>
-                </table>
+                </table> 
             </div>
         </div>
     </section>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Skpd;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -29,5 +30,10 @@ class User extends Authenticatable
     public function pelatihan(): BelongsTo
     {
         return $this->belongsTo(Pelatihan::class);
+    }
+
+    public function laporan(): HasOne
+    {
+        return $this->hasOne(LaporanAktualisasi::class);
     }
 }

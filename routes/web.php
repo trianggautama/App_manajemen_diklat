@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KegiatanPesertaController;
 use App\Http\Controllers\LaporanAktualisasiPesertaController;
+use App\Http\Controllers\LaporanAktualisasiWidyaiswaraController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PelatihanWidyaiswaraController;
@@ -48,7 +49,7 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::prefix('/kegiatan_harian')->name('kegiatan_harian.')->group(function () {
             Route::get('/index/{id}', [KegiatanController::class, 'index'])->name('index');
         });
-        Route::resource('laporan_aktualisasi', LaporanAktualisasiPesertaController::class);
+        Route::resource('laporan_aktualisasi', LaporanAktualisasiWidyaiswaraController::class);
     });
 });
 

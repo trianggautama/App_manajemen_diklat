@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LaporanAktualisasi;
 use Illuminate\Http\Request;
 
 class LaporanAktualisasiWidyaiswaraController extends Controller
@@ -45,7 +46,8 @@ class LaporanAktualisasiWidyaiswaraController extends Controller
      */
     public function show($id)
     {
-        return view('widyaiswara.laporan_aktualisasi.index');
+        $data = LaporanAktualisasi::findOrFail($id);
+        return view('widyaiswara.laporan_aktualisasi.show',compact('data'));
     }
 
     /**
@@ -56,7 +58,12 @@ class LaporanAktualisasiWidyaiswaraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = LaporanAktualisasi::findOrFail($id);
+        $data->status = 1;
+        $data->save();
+
+        return back()->withSuccess('Data berhasil diverifikasi');
+
     }
 
     /**
