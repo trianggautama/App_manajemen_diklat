@@ -21,15 +21,25 @@
                         <label for="">Materi</label>
                         <input type="text" name="materi" class="form-control" value="{{$data->materi}}">
                     </div>
-                    <div class="form-group">
-                        <label for="">Waktu Kegiatan (Menit)</label>
-                        <input type="text" name="waktu_kegiatan" class="form-control" value="{{$data->waktu_kegiatan}}">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="">Waktu Mulai </label>
+                                <input type="time" name="waktu_mulai" class="form-control" value="{{$data->waktu_mulai}}">
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="">Waktu Selesai </label>
+                                <input type="time" name="waktu_selesai" class="form-control" value="{{$data->waktu_selesai}}">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{{Route('userWidyaIswara.kegiatan_harian.index',$data->pelatihan_id)}}" class="btn icon icon-left btn-secondary"><i
+                <button class="btn icon icon-left btn-primary float-end m-1"><i data-feather="save"></i> Ubah Data</button>
+                    <a href="{{Route('userWidyaIswara.kegiatan_harian.index',$data->pelatihan_id)}}" class="btn icon icon-left btn-secondary float-end m-1"><i
                             data-feather="arrow-left"></i> Kembali</a>
-                    <button class="btn icon icon-left btn-primary"><i data-feather="save"></i> Ubah Data</button>
                 </div>
             </form>
         </div>

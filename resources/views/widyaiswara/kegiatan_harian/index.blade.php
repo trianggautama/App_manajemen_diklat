@@ -21,7 +21,9 @@
                             <th>No</th>
                             <th>Tanggal Kegiatan</th>
                             <th>Materi</th>
-                            <th>Waktu kegiatan</th>
+                            <th>Waktu Mulai</th>
+                            <th>Waktu Selesai</th>
+                            <th>Durasi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -31,6 +33,8 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{carbon\carbon::parse($d->tanggal_kegiatan)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->materi}}</td>
+                            <td>{{Carbon\carbon::parse($d->waktu_mulai)->format('H:i')}} WITA</td>
+                            <td>{{Carbon\carbon::parse($d->waktu_selesai)->format('H:i')}} WITA</td>
                             <td>{{$d->waktu_kegiatan}} Menit</td>
                             <td>
                                 <form action="{{Route('userWidyaIswara.kegiatan_harian.destroy',$d->id)}}" method="POST">
@@ -79,10 +83,21 @@
                         <label for="">Materi</label>
                         <input type="text" name="materi" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="">Waktu Kegiatan (Menit)</label>
-                        <input type="text" name="waktu_kegiatan" class="form-control">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="">Waktu Mulai </label>
+                                <input type="time" name="waktu_mulai" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="">Waktu Selesai </label>
+                                <input type="time" name="waktu_selesai" class="form-control">
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="btn btn-primary ml-1">
                             <i class="bx bx-check d-block d-sm-none"></i>

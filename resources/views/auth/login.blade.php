@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 mx-auto">
-                    <div class="card pt-4">
+                    <div class="card pt-4 mt-4">
                         <div class="card-body">
                             <div class="text-center mb-5">
                                 <img src="{{asset('pemprov.png')}}" width="80" class='mb-2'>
@@ -29,7 +29,7 @@
                                 <div class="form-group position-relative has-icon-left">
                                     <label for="username">Username</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" id="username" name="username" required>
+                                        <input type="text" class="form-control" id="username" name="username" required placeholder="Username">
                                         <div class="form-control-icon">
                                             <i data-feather="user"></i>
                                         </div>
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="position-relative">
                                         <input type="password" class="form-control" id="password" name="password"
-                                            required>
+                                            required placeholder="Pawweord">
                                         <div class="form-control-icon">
                                             <i data-feather="lock"></i>
                                         </div>
@@ -49,9 +49,7 @@
                                 </div>
 
                                 <div class="clearfix">
-                                    {{-- <a class="btn btn-primary float-end" href="{{Route('userAdmin.beranda')}}">Masuk</a>
-                                    --}}
-                                    <button type="submit" class="btn btn-primary float-end">Masuk</button>
+                                    <button type="submit" class="btn btn-block btn-primary float-end">Masuk</button>
                                 </div>
                             </form>
                         </div>

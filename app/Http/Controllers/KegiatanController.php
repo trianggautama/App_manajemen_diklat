@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KegiatanPeserta;
 use App\Models\Pelatihan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -39,7 +40,13 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        KegiatanPeserta::create($request->all());
+        $data               =  $request->all();
+        $waktu_mulai        = Carbon::parse($request->waktu_mulai);
+        $waktu_selesai      = Carbon::parse($request->waktu_selesai);
+        $menit              = $waktu_mulai->diffInMinutes($waktu_selesai);
+
+        $data['waktu_kegiatan'] = $menit ;
+        KegiatanPeserta::create($data);
 
         return back()->withSuccess('Data berhasil disimpan');
     }
@@ -78,7 +85,15 @@ class KegiatanController extends Controller
     public function update(Request $request, $id)
     {
         $data = KegiatanPeserta::findOrFail($id);
-        $data->update($request->all());
+
+        $req               =  $request->all();
+        $waktu_mulai        = Carbon::parse($request->waktu_mulai);
+        $waktu_selesai      = Carbon::parse($request->waktu_selesai);
+        $menit              = $waktu_mulai->diffInMinutes($waktu_selesai);
+        
+        $req['waktu_kegiatan'] = $menit ;
+
+        $data->update($req);
 
         return redirect()->route('userWidyaIswara.kegiatan_harian.index', $data->pelatihan_id)->withSuccess('Data berhasil diubah');
     }
