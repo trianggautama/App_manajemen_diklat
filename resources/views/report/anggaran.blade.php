@@ -88,7 +88,7 @@
     <div class="container">
     <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">DATA ANGGARAN PELATIHAN / DIKLAT</h2>
+            <h2 style="text-align:center;">DATA ANGGARAN PELATIHAN / DIKLAT {{$pelatihan->nama_pelatihan}}</h2>
             <br>
                 <table class='table table-striped' id="table1">
                     <thead>

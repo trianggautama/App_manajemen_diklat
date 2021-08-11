@@ -49,17 +49,17 @@ class ReportController extends Controller
         return $pdf->stream('Laporan pelatihan.pdf');
     }
 
-    public function anggaran()
+    public function anggaran($id)
     {
-        $data   = Anggaran::latest()->get();
-        
+        $data   = Anggaran::where('pelatihan_id',$id)->latest()->get();
+        $pelatihan = Pelatihan::findOrFail($id);
         $data->map(function ($item) {
             $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
 
             return $item;
         });
 
-        $pdf    = PDF::loadView('report.anggaran', ['data'=>$data]);
+        $pdf    = PDF::loadView('report.anggaran', ['data'=>$data, 'pelatihan'=>$pelatihan]);
         $pdf->setPaper('a4', 'potrait'); 
         
         return $pdf->stream('Laporan anggaran.pdf');

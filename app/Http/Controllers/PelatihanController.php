@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anggaran;
 use App\Models\JenisDiklat;
 use App\Models\Pelatihan;
+use App\Models\Penyakit;
 use App\Models\Skpd;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -65,9 +66,10 @@ class PelatihanController extends Controller
 
             return $item;
         });
-        $skpd = Skpd::all();
-        $peserta = User::wherePelatihanId($pelatihan->id)->get();
-        return view('admin.pelatihan.show', compact('pelatihan', 'anggaran', 'skpd', 'peserta'));
+        $skpd       = Skpd::all();
+        $penyakit   = Penyakit::all();
+        $peserta    = User::wherePelatihanId($pelatihan->id)->get();
+        return view('admin.pelatihan.show', compact('pelatihan', 'anggaran', 'skpd', 'peserta','penyakit'));
 
     }
 

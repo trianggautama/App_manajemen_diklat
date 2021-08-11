@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(LaporanAktualisasi::class);
     }
+
+    public function penyakit(): BelongsTo
+    {
+        return $this->belongsTo(Penyakit::class);
+    }
 }

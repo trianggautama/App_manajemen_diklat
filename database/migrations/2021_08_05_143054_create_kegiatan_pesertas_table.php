@@ -20,6 +20,8 @@ class CreateKegiatanPesertasTable extends Migration
             $table->date('tanggal_kegiatan');
             $table->string('materi');
             $table->string('waktu_kegiatan');
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
             $table->timestamps();
         });
     }

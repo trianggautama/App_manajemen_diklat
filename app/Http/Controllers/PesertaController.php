@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyakit;
 use App\Models\Skpd;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -69,7 +70,8 @@ class PesertaController extends Controller
     {
         $skpd       = Skpd::latest()->get();
         $peserta    = User::findOrFail($id);
-        return view('admin.peserta.edit', compact('peserta','skpd'));
+        $penyakit   = Penyakit::all();
+        return view('admin.peserta.edit', compact('peserta','skpd','penyakit'));
     }
 
     /**

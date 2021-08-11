@@ -66,7 +66,16 @@
                 <label for="">SKPD</label>
                 <select name="skpd_id" id="" class="form-control">
                     @foreach ($skpd as $d)
-                    <option value="{{$d->id}}" {{$peserta->skpd_id == $d->id ? 'checked' : ''}}>{{$d->nama_skpd}}</option>
+                    <option value="{{$d->id}}" {{$peserta->skpd_id == $d->id ? 'selected' : ''}}>{{$d->nama_skpd}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Penyakit Bawaan</label>
+                <select name="penyakit_id" id="" class="form-control">
+                    <option value="">- penyakit bawaan -</option>
+                    @foreach ($penyakit as $d)
+                    <option value="{{$d->id}}" {{$peserta->penyakit_id == $d->id ? 'selected' : ''}}>{{$d->nama_penyakit}}</option>
                     @endforeach
                 </select>
             </div>

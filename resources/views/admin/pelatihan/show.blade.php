@@ -241,6 +241,15 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="">Penyakit Bawaan</label>
+                        <select name="penyakit_id" id="" class="form-control">
+                            <option value="">- penyakit bawaan -</option>
+                            @foreach ($penyakit as $d)
+                            <option value="{{$d->id}}">{{$d->nama_penyakit}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <input type="hidden" name="pelatihan_id" id="" value="{{$pelatihan->id}}">
                     <input type="hidden" name="role" id="" value="3">
                     <div class="form-group">

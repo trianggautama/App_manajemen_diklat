@@ -12,7 +12,6 @@
                         Anggaran
                     </div>
                     <div class="col-md">
-                        <a href="{{Route('report.anggaran')}}" class=" btn btn-sm btn-outline-info float-end" target="__blank"><i data-feather="printer"></i> Cetak Data</a>
                     </div>
                 </div>
             </div>
@@ -21,10 +20,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Pelatihan </th>
-                            <th>Jumlah Hari</th>
-                            <th>Orang</th>
-                            <th>Total</th>
+                            <th>Nama Pelatihan</th>
+                            <th>Jenis Pelatihan</th>
+                            <th>Kuota</th>
+                            <th>Total Anggaran</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -33,15 +32,12 @@
 
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$d->pelatihan->nama_pelatihan}}</td>
-                            <td>{{carbon\carbon::parse($d->pelatihan->tanggal_mulai)->diffInDays($d->pelatihan->tanggal_selesai)}}
-                                hari</td>
-                            <td>{{$d->pelatihan->kuota}} Orang</td>
-                            <td>Rp.{{$d->total}}</td>
+                            <td>{{$d->nama_pelatihan}}</td>
+                            <td>{{$d->jenis_diklat->jenis_diklat}}</td>
+                            <td>{{$d->kuota}}</td>
+                            <td>Rp. {{$anggaran->where('pelatihan_id',$d->id)->sum('total')}}</td>
                             <td>
-                                <a href="{{Route('userAdmin.anggaran.show',1)}}"
-                                    class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Detail</a>
+                                <a href="{{Route('userAdmin.anggaran.show',$d->id)}}"  class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i> Lihat</a>
                             </td>
                         </tr>
                         @endforeach

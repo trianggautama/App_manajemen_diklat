@@ -49,6 +49,11 @@
                         <td>:</td>
                         <td> {{$peserta->alamat}}</td>
                     </tr>
+                    <tr>
+                        <td>Penyakit Bawaan</td>
+                        <td>:</td>
+                        <td> {{$peserta->penyakit->nama_penyakit}}</td>
+                    </tr>
                 </table>
             </div>
         </div>

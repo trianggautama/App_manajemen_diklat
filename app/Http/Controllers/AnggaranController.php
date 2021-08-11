@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggaran;
+use App\Models\Pelatihan;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -15,15 +16,15 @@ class AnggaranController extends Controller
      */
     public function index()
     {
-        
-        $data = Anggaran::all();
-        $data->map(function ($item) {
-            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota;
+        $data       = Pelatihan::latest()->get();
+        $anggaran   = Anggaran::all();
+        $anggaran->map(function ($item) {
+            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota * $item->volume;
 
             return $item;
         });
 
-        return view('admin.anggaran.index', compact('data'));
+        return view('admin.anggaran.index', compact('data','anggaran'));
     }
 
     /**
@@ -57,7 +58,15 @@ class AnggaranController extends Controller
      */
     public function show($id)
     {
-        //
+        $pelatihan = Pelatihan::findOrFail($id);
+        $anggaran = $pelatihan->anggaran;
+        
+        $anggaran->map(function ($item) {
+            $item['total'] = $item->jumlah_anggaran * $item->pelatihan->kuota * $item->volume;
+
+            return $item;
+        });
+        return view('admin.anggaran.show', compact('pelatihan','anggaran'));
     }
 
     /**
