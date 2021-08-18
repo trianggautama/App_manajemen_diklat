@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggaran;
 use App\Models\KegiatanPeserta;
+use App\Models\LaporanAktualisasi;
 use App\Models\Pelatihan;
 use App\Models\Penyakit;
 use App\Models\Skpd;
@@ -111,5 +112,18 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait'); 
         
         return $pdf->stream('Laporan Kegiatan Pelatihan.pdf');
+    }
+
+    public function laporan_aktualisasi(Request $req)
+    {
+        // dd($req->pelatihan_id);
+
+        $pelatihan   = Pelatihan::findOrFail($req->pelatihan_id);
+        $data        = LaporanAktualisasi::where('pelatihan_id',$pelatihan->id)->latest()->get();
+       
+        $pdf    = PDF::loadView('report.laporan_aktualisasi', ['data'=>$data, 'pelatihan'=>$pelatihan]);
+        $pdf->setPaper('a4', 'potrait'); 
+        
+        return $pdf->stream('Laporan Laporan Aktualisasi Pelatihan.pdf');
     }
 }
