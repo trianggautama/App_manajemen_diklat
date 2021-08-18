@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelatihan;
 use App\Models\Penyakit;
 use App\Models\Skpd;
 use App\Models\User;
@@ -40,12 +41,19 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        $req = $request->all();
-        $req['username'] = $request->nip;
-        $req['password'] = Hash::make($request->nip);
-        $data = User::create($req);
+        $pelatihan = Pelatihan::findOrFail($request->pelatihan_id);
+        if ($pelatihan->peserta->count() > $pelatihan->kuota) {
+            return back()->withWarning('Kuota peserta sudah habis');
+        } else {
 
-        return back()->withSuccess('Data berhasil disimpan');
+            $req = $request->all();
+
+            $req['username'] = $request->nip;
+            $req['password'] = Hash::make($request->nip);
+            $data = User::create($req);
+
+            return back()->withSuccess('Data berhasil disimpan');
+        }
     }
 
     /**
@@ -68,10 +76,10 @@ class PesertaController extends Controller
      */
     public function edit($id)
     {
-        $skpd       = Skpd::latest()->get();
-        $peserta    = User::findOrFail($id);
-        $penyakit   = Penyakit::all();
-        return view('admin.peserta.edit', compact('peserta','skpd','penyakit'));
+        $skpd = Skpd::latest()->get();
+        $peserta = User::findOrFail($id);
+        $penyakit = Penyakit::all();
+        return view('admin.peserta.edit', compact('peserta', 'skpd', 'penyakit'));
     }
 
     /**
@@ -90,7 +98,7 @@ class PesertaController extends Controller
         }
 
         $peserta->update($req);
-        return redirect()->route('userAdmin.pelatihan.show',$peserta->pelatihan_id)->withSuccess('Data berhasil diubah');
+        return redirect()->route('userAdmin.pelatihan.show', $peserta->pelatihan_id)->withSuccess('Data berhasil diubah');
     }
 
     /**
