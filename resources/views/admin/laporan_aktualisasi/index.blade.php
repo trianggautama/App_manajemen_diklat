@@ -6,8 +6,13 @@
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header d-flex flex-row-reverse">
-                Tabel Data
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-2">Tabel Data</div>
+                    <div class="col-md">
+                    <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}" class=" btn btn-sm btn-outline-info float-end" ><i data-feather="printer"></i> Cetak Data</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">

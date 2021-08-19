@@ -7,15 +7,17 @@
     <section class="section mt-4">
         <div class="card">
             <div class="card-header text-right">
-               <div class="row">
-                   <div class="col-md">
+                <div class="row">
+                    <div class="col-md">
                         Detail Data
-                   </div>
-                   <div class="col-md d-flex flex-row-reverse">
-                        <a href="{{Route('userAdmin.pelatihan.show',$peserta->pelatihan_id)}}" class="btn btn-secondary"><i data-feather="back"></i> Kembali</a>
-                        <a href="{{Route('report.biodata_peserta',$peserta->pelatihan_id)}}" class="btn btn-primary"><i data-feather="printer "></i> Cetak Data</a>
-                   </div>
-               </div>
+                    </div>
+                    <div class="col-md d-flex flex-row-reverse">
+                        <a href="{{Route('userAdmin.pelatihan.show',$peserta->pelatihan_id)}}"
+                            class="btn btn-secondary"><i data-feather="back"></i> Kembali</a>
+                        <a href="{{Route('report.biodata_peserta',$peserta->id)}}" class="btn btn-primary"><i
+                                data-feather="printer "></i> Cetak Data</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -37,7 +39,7 @@
                     <tr>
                         <td>Jenis kelamin</td>
                         <td>:</td>
-                        <td>@if($peserta->no_hp == 1) Laki-laki @else Perempuan  @endif</td>
+                        <td>@if($peserta->no_hp == 1) Laki-laki @else Perempuan @endif</td>
                     </tr>
                     <tr>
                         <td>SKPD</td>

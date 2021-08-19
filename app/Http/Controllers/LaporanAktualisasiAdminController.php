@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LaporanAktualisasi;
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 
 class LaporanAktualisasiAdminController extends Controller
@@ -84,4 +85,11 @@ class LaporanAktualisasiAdminController extends Controller
     {
         //
     }
-}
+
+    public function filter()
+    {
+        $pelatihan = Pelatihan::latest()->get();
+
+        return view('admin.laporan_aktualisasi.filter',compact('pelatihan'));
+    }
+} 
