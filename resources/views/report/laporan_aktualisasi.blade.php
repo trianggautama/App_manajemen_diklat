@@ -107,11 +107,9 @@
                             <td style="text-align: justify; padding:5px;">{{$d->judul}}</td>
                             <td style="text-align: center;">
                                 @if ($d->status == 0)
-
-                                <div class="text-warning"> Belum Diverifikasi </div>
+                                    <div class="text-warning"> Belum Diverifikasi </div>
                                 @else
-                                <div class="text-primary"> Sudah Diverifikasi </div>
-
+                                    <div class="text-primary"> Sudah Diverifikasi </div>
                                 @endif
                             </td>
                         </tr>
