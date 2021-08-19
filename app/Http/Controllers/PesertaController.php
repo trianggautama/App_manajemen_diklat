@@ -42,7 +42,7 @@ class PesertaController extends Controller
     public function store(Request $request)
     {
         $pelatihan = Pelatihan::findOrFail($request->pelatihan_id);
-        if ($pelatihan->peserta->count() > $pelatihan->kuota) {
+        if ($pelatihan->peserta->count() >= $pelatihan->kuota) {
             return back()->withWarning('Kuota peserta sudah habis');
         } else {
 
