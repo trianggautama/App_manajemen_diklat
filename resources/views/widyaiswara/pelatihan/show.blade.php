@@ -14,7 +14,7 @@
                             class="btn btn-secondary float-end mx-1"> Kembali</a>
                         <a href="{{Route('userWidyaIswara.kegiatan_harian.index',$data->id)}}"
                             class="btn btn-info float-end">
-                            Kegiatan Harian</a>
+                            Daftar Materi</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user as $d) 
+                        @foreach ($user as $d)  
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$d->nama}}</td>
@@ -99,6 +99,7 @@
                                 <a href="{{Route('userWidyaIswara.peserta_widyaiswara.show',$d->id)}}" class="btn btn-primary mb-1"><i  data-feather="user"></i> biodata</a>
                                 @if($d->laporan)
                                 <a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',$d->laporan->id)}}" class="btn btn-info mb-1"><i  data-feather="book"></i> laporan aktualisasi</a>
+                                <a href="{{Route('userWidyaIswara.penilaian_peserta.index',$d->id)}}" class="btn btn-warning mb-1"><i  data-feather="file"></i> Penilaian Peseprta</a>
                                 @endif 
                         </tr>
                         @endforeach

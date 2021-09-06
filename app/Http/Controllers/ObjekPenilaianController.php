@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KegiatanPeserta;
-use App\Models\Pelatihan;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-class KegiatanPesertaController extends Controller
+class ObjekPenilaianController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $pelatihan = Pelatihan::findOrFail($id);
-        $data      = KegiatanPeserta::where('pelatihan_id', $pelatihan->id)->get();
-
-        return view('peserta.kegiatan.index', compact('pelatihan', 'data'));
-    } 
+        return view('admin.objek_penilaian.index');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,9 +34,7 @@ class KegiatanPesertaController extends Controller
      */
     public function store(Request $request)
     {
-        KegiatanPeserta::create($request->all());
-
-        return back()->withSuccess('Data berhasil disimpan');
+        //
     }
 
     /**
@@ -53,8 +45,7 @@ class KegiatanPesertaController extends Controller
      */
     public function show($id)
     {
-        $data = KegiatanPeserta::findOrFail($id);
-        return view('peserta.kegiatan.show',compact('data'));
+        //
     }
 
     /**
@@ -65,9 +56,7 @@ class KegiatanPesertaController extends Controller
      */
     public function edit($id)
     {
-        $data = KegiatanPeserta::findOrFail($id);
-
-        return view('peserta.kegiatan.edit', compact('data'));
+        return view('admin.objek_penilaian.edit');
     }
 
     /**
@@ -79,10 +68,7 @@ class KegiatanPesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = KegiatanPeserta::findOrFail($id);
-        $data->update($request->all());
-
-        return redirect()->route('userWidyaIswara.kegiata_harian.index', $request->pelatihan_id)->withSuccess('Data berhasil diubah');
+        //
     }
 
     /**
@@ -93,17 +79,6 @@ class KegiatanPesertaController extends Controller
      */
     public function destroy($id)
     {
-        $data = KegiatanPeserta::findOrFail($id);
-
-        try {
-            $data->delete();
-            return back()->withSuccess('Data berhasil dihapus');
-        } catch (QueryException $e) {
-
-            if ($e->getCode() == "23000") {
-                return back()->withError('Data gagal dihapus');
-            }
-        }
-
+        //
     }
 }

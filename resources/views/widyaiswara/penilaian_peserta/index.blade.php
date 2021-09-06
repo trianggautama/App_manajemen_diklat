@@ -2,7 +2,7 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Detail Kegiatan Harian </h3>
+        <h3>Penilaian Peserta</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
@@ -10,34 +10,42 @@
                 <div class="row">
                     <div class="col-md"> Detail Data</div>
                     <div class="col-md">
-                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index',$data->pelatihan_id)}}"
+                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index',1)}}"
                             class="btn btn-secondary float-end mx-1"> Kembali</a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-striped">
+            <table class="table table-striped">
                     <tr>
-                        <td width="20%">Materi</td>
-                        <td>: -</td>
+                        <td width="15%">Nip</td>
+                        <td width="1%">:</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td width="20%">Tanggal Kegiatan</td>
-                        <td>: -</td>
+                        <td>Nama</td>
+                        <td>:</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td width="20%">Waktu Kegiatan</td>
-                        <td>: -
-                        </td>
+                        <td>Tempat, tanggal lahir</td>
+                        <td>:</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td width="20%">Durasi Kegiatan</td>
-                        <td>: -
-                        </td>
+                        <td>Jenis kelamin</td>
+                        <td>:</td>
                         <td></td>
+                    </tr>
+                    <tr>
+                        <td>SKPD</td>
+                        <td>:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td> </td>
                     </tr>
                 </table>
             </div>
@@ -46,7 +54,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md">
-                        Modul Pembelajaran
+                       Penilaian Peserta
                     </div>
                     <div class="col-md">
                         <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
@@ -57,20 +65,25 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class='table table-striped' id="table1">
+                <table class='table table-striped'>
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Judul Modul </th>
-                            <th>Uraian</th>
-                            <th>File</th>
+                            <th>Objek Penilaian </th>
+                            <th>Nilai</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="4">-</td>
-                            <td><a href="" class="btn btn-danger"><i data-feather="delete"></i> </a></td>
+                            <td>1</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>    <a href="" class="btn btn-danger"><i data-feather="delete"></i> </a></td>
+                        </tr>
+                        <tr class="table-info">
+                            <td colspan="3">Nilai Rata rata</td>
+                            <td>80</td>
                         </tr>
                     </tbody>
                 </table>
@@ -94,16 +107,14 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Judul Modul</label>
-                        <input type="text" name="judul" class="form-control" required>
+                        <label for="">Pilih Objek Penilaian</label>
+                       <select name="objek_penilaian_id" id="">
+                           <option value="">-- pilih objek penilaian --</option>
+                       </select>
                     </div>
                     <div class="form-group">
-                        <label for="">uraian</label>
-                        <textarea name="uraian" id="" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">File (PDF)</label>
-                        <input type="file" name="file" class="form-control" required>
+                        <label for="">nilai</label>
+                        <input type="number" class="form-control" name="nilei">
                     </div>
                 </div>
                 <div class="modal-footer">

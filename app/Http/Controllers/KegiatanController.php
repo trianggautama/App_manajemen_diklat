@@ -59,7 +59,8 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        return view('widyaiswara.kegiatan.show');
+        $data = KegiatanPeserta::findOrFail($id);
+        return view('widyaiswara.kegiatan_harian.show',compact('data'));
     }
 
     /**

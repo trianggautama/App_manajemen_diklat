@@ -2,7 +2,7 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Kegiatan Harian Pelatihan {{$pelatihan->nama_pelatihan}}</h3>
+        <h3>Materi Pelatihan {{$pelatihan->nama_pelatihan}}</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
@@ -40,9 +40,9 @@
                                 <form action="{{Route('userWidyaIswara.kegiatan_harian.destroy',$d->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <!-- <a href="{{Route('userWidyaIswara.kegiatan_harian.show',$d->id)}}"
+                                <a href="{{Route('userWidyaIswara.kegiatan_harian.show',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                                    Detail</a> -->
+                                    Detail</a>
                                 <a href="{{Route('userWidyaIswara.kegiatan_harian.edit',$d->id)}}"
                                     class="btn btn-sm icon icon-left btn-primary mb-1"><i data-feather="info"></i>
                                     Edit</a>

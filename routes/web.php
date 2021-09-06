@@ -33,6 +33,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('pelatihan', '\App\Http\Controllers\PelatihanController');
         Route::resource('peserta', '\App\Http\Controllers\PesertaController');
         Route::resource('anggaran', '\App\Http\Controllers\AnggaranController');
+        Route::resource('objek_penilaian', '\App\Http\Controllers\ObjekPenilaianController');
         Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiAdminController');
         Route::get('/laporan_aktualisasi/filter/report', [LaporanAktualisasiAdminController::class, 'filter'])->name('laporan_aktualisasi.filter');
     });
@@ -51,10 +52,11 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::prefix('/kegiatan_harian')->name('kegiatan_harian.')->group(function () {
             Route::get('/index/{id}', [KegiatanController::class, 'index'])->name('index');
         });
+        Route::resource('penilaian_peserta', '\App\Http\Controllers\PenilaianPesertaController');
         Route::resource('laporan_aktualisasi', LaporanAktualisasiWidyaiswaraController::class);
     });
 });
-
+ 
 Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
     Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
@@ -73,6 +75,8 @@ Route::prefix('/report')->name('report.')->group(function () {
     Route::get('/penyakit', [ReportController::class, 'penyakit'])->name('penyakit');
     Route::get('/widyaiswara', [ReportController::class, 'widyaiswara'])->name('widyaiswara');
     Route::get('/pelatihan', [ReportController::class, 'pelatihan'])->name('pelatihan');
+    Route::get('/pelatihan/filter', [ReportController::class, 'pelatihan_filter'])->name('pelatihan.filter');
+    Route::get('/pelatihan/filter/cetak', [ReportController::class, 'pelatihan_filter_cetak'])->name('pelatihan.filter.cetak');
     Route::get('/anggaran/{id}', [ReportController::class, 'anggaran'])->name('anggaran');
     Route::get('/widyaiswara/{id}', [ReportController::class, 'widyaiswara_detail'])->name('widyaiswara.detail');
     Route::get('/pelatihan/{id}', [ReportController::class, 'pelatihan_detail'])->name('pelatihan_detail');
