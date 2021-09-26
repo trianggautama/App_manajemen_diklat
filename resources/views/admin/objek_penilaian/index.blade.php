@@ -23,21 +23,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($data as $d)
                         <tr>
-                            <td>1</td>
-                            <td>Pemahasan Terhadap Materi</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aliquid itaque</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$d->objek_penilaian}}</td>
+                            <td>{{$d->uraian}}</td>
                             <td class="text-center">
-                                <form action="{{Route('userAdmin.penyakit.destroy',1)}}" method="POST">
+                                <form action="{{Route('userAdmin.penyakit.destroy',$d->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{Route('userAdmin.objek_penilaian.edit', 1)}}"
+                                    <a href="{{Route('userAdmin.objek_penilaian.edit', $d->id)}}"
                                         class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
                                         Edit</a>
-                                    <button type="submit" class="btn icon icon-left btn-danger"><i data-feather="delete"></i> Hapus</button>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i
+                                            data-feather="delete"></i> Hapus</button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -50,7 +53,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="{{route('userAdmin.penyakit.store')}}" method="POST">
+            <form action="{{route('userAdmin.objek_penilaian.store')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Tambah Data</h5>
@@ -79,7 +82,7 @@
                     </div>
                 </div>
             </form>
-        </div> 
+        </div>
     </div>
 </div>
 @endsection

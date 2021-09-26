@@ -87,7 +87,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user as $d)  
+                        @foreach ($user as $d)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$d->nama}}</td>
@@ -95,16 +95,19 @@
                             <td>{{$d->tempat_lahir}},
                                 {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                             <td>{{$d->skpd->nama_skpd}}</td>
-                            <td> 
-                                <a href="{{Route('userWidyaIswara.peserta_widyaiswara.show',$d->id)}}" class="btn btn-primary mb-1"><i  data-feather="user"></i> biodata</a>
+                            <td>
+                                <a href="{{Route('userWidyaIswara.peserta_widyaiswara.show',$d->id)}}"
+                                    class="btn btn-primary mb-1"><i data-feather="user"></i> biodata</a>
                                 @if($d->laporan)
-                                <a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',$d->laporan->id)}}" class="btn btn-info mb-1"><i  data-feather="book"></i> laporan aktualisasi</a>
-                                <a href="{{Route('userWidyaIswara.penilaian_peserta.index',$d->id)}}" class="btn btn-warning mb-1"><i  data-feather="file"></i> Penilaian Peseprta</a>
-                                @endif 
+                                <a href="{{Route('userWidyaIswara.laporan_aktualisasi.show',$d->laporan->id)}}"
+                                    class="btn btn-info mb-1"><i data-feather="book"></i> laporan aktualisasi</a>
+                                <a href="{{Route('userWidyaIswara.penilaian_peserta.index',['user_id' => $d->id, 'pelatihan_id' => $data->id])}}"
+                                    class="btn btn-warning mb-1"><i data-feather="file"></i> Penilaian Peserta</a>
+                                @endif
                         </tr>
                         @endforeach
                     </tbody>
-                </table> 
+                </table>
             </div>
         </div>
     </section>

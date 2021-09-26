@@ -9,17 +9,18 @@
       <div class="card-header text-right">
         Form Edit
       </div>
-      <form action="{{route('userAdmin.penyakit.update',1)}}" method="POST">
+      <form action="{{route('userAdmin.objek_penilaian.update',$objek_penilaian->id)}}" method="POST">
         @csrf
         @method('put')
         <div class="card-body">
           <div class="form-group">
             <label for="">Objek Penilaian</label>
-            <input type="text" name="objek_penilaian" value="" class="form-control">
+            <input type="text" name="objek_penilaian" value="{{$objek_penilaian->objek_penilaian}}"
+              class="form-control">
           </div>
           <div class="form-group">
             <label for="">Uraian</label>
-            <input type="text" name="uraian" value="" class="form-control">
+            <input type="text" name="uraian" value="{{$objek_penilaian->uraian}}" class="form-control">
           </div>
         </div>
         <div class="card-footer">
