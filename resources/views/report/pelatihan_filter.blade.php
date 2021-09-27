@@ -23,7 +23,7 @@
         text-align: center;
       }
       td{
-        /* text-align: center; */
+        text-align: center;
       }
       br{
           margin-bottom: 5px !important;
@@ -88,35 +88,35 @@
     <div class="container">
     <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center; text-transform:uppercase;">LAPORAN AKTUALISASI PELATIHAN {{$pelatihan->nama_pelatihan}}</h2>
+            <h2 style="text-align:center;">DATA PELATIHAN / DIKLAT</h2>
+            <h3 style="text-align:center; margin:0px;"> TANGGAL {{Carbon\carbon::parse($tgl_awal)->translatedFormat('d F Y')}} SAMPAI {{Carbon\carbon::parse($tgl_akhir)->translatedFormat('d F Y')}}</h3>
             <br>
-            <table class='table table-striped' id="table1">
+                <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
-                            <th style="text-align: center;">No</th>
-                            <th style="text-align: center;">Peserta</th>
-                            <th>Judul Laporan</th>
-                            <th style="text-align: center;">Status Verif</th>
+                            <th>No</th>
+                            <th>Nama Pelatihan</th>
+                            <th>Jenis Pelatihan</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
+                            <th>Kuota</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $d)
+
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td style="text-align: center;">{{$d->user->nama}}</td>
-                            <td style="text-align: justify; padding:5px;">{{$d->judul}}</td>
-                            <td style="text-align: center;">
-                                @if ($d->status == 0)
-                                    <div class="text-warning"> Belum Diverifikasi </div>
-                                @else
-                                    <div class="text-primary"> Sudah Diverifikasi </div>
-                                @endif
-                            </td>
+                            <td>{{$d->nama_pelatihan}}</td>
+                            <td>{{$d->jenis_diklat->jenis_diklat}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_mulai)->translatedFormat('d F Y')}}</td>
+                            <td>{{carbon\carbon::parse($d->tanggal_selesai)->translatedFormat('d F Y')}}</td>
+                            <td>{{$d->kuota}}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <br> 
+                <br>
                 <br>
                 <div class="ttd">
                 <p style="margin:0px"> Banjarbaru,</p>

@@ -1,6 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
+<<<<<<< HEAD
+=======
+/public/modul
+>>>>>>> 17e4813cd20f5dbd887b9872b4a4b96fff83ae05
 /public/laporan
 /storage/*.key
 /vendor
@@ -12,5 +16,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.idea
+/.idea  
 /.vscode

@@ -2,42 +2,48 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Kegiatan Harian Pelatihan {{$pelatihan->nama_pelatihan}}</h3>
+        <h3>Objek Penilaian Peserta / Data</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
-            <div class="card-header">
-                Tabel Data
+            <div class="card-header d-flex flex-row-reverse">
+                <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                    data-bs-target="#default">
+                    <i data-feather="plus" width="20"></i> Tambah Data
+                </button>
             </div>
             <div class="card-body">
                 <table class='table table-striped' id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal Kegiatan</th>
-                            <th>Materi</th>
-                            <th>Waktu kegiatan</th>
-                            <th>Aksi</th>
+                            <th>Objek Penilaian</th>
+                            <th>Uraian</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $d)
-
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{carbon\carbon::parse($d->tanggal_kegiatan)->translatedFormat('d F Y')}}</td>
-                            <td>{{$d->materi}}</td>
-                            <td>{{$d->waktu_kegiatan}} Menit</td>
-                            <td>
-                                <a href="{{Route('userPeserta.kegiatan_harian_peserta.show',$d->id)}}"
-                            class="btn btn-sm icon icon-left btn-info mb-1"><i data-feather="info"></i>
-                            Detail</a>
+                            <td>{{$d->objek_penilaian}}</td>
+                            <td>{{$d->uraian}}</td>
+                            <td class="text-center">
+                                <form action="{{Route('userAdmin.penyakit.destroy',$d->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{Route('userAdmin.objek_penilaian.edit', $d->id)}}"
+                                        class="btn icon icon-left btn-primary"><i data-feather="edit"></i>
+                                        Edit</a>
+                                    <button type="submit" class="btn icon icon-left btn-danger"><i
+                                            data-feather="delete"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-            </div> 
+            </div>
         </div>
     </section>
 </div>
@@ -47,7 +53,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="{{route('userAdmin.jenis_diklat.store')}}" method="POST">
+            <form action="{{route('userAdmin.objek_penilaian.store')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Tambah Data</h5>
@@ -57,16 +63,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Tanggal Kegiatan</label>
-                        <input type="date" name="jenis_diklat" class="form-control">
+                        <label for="">Objek Penilaian</label>
+                        <input type="text" name="objek_penilaian" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="">Materi</label>
-                        <input type="text" name="materi" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Waktu Kegiatan (Menit)</label>
-                        <input type="text" name="waktu_kegiatan" class="form-control">
+                        <label for="">Uraian</label>
+                        <input type="text" name="uraian" class="form-control">
                     </div>
                     <div class="d-flex flex-row-reverse">
                         <button type="submit" class="btn btn-primary ml-1">

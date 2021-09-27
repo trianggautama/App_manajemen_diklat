@@ -3,12 +3,12 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KegiatanPesertaController;
-use App\Http\Controllers\LaporanAktualisasiPesertaController;
-use App\Http\Controllers\LaporanAktualisasiWidyaiswaraController;
 use App\Http\Controllers\LaporanAktualisasiAdminController;
+use App\Http\Controllers\LaporanAktualisasiWidyaiswaraController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PelatihanWidyaiswaraController;
+use App\Http\Controllers\PenilaianPesertaController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,11 +33,12 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('pelatihan', '\App\Http\Controllers\PelatihanController');
         Route::resource('peserta', '\App\Http\Controllers\PesertaController');
         Route::resource('anggaran', '\App\Http\Controllers\AnggaranController');
+        Route::resource('objek_penilaian', '\App\Http\Controllers\ObjekPenilaianController');
         Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiAdminController');
         Route::get('/laporan_aktualisasi/filter/report', [LaporanAktualisasiAdminController::class, 'filter'])->name('laporan_aktualisasi.filter');
     });
 });
- 
+
 Route::group(['middleware' => ['widyaiswara']], function () {
     Route::prefix('/user-widyaiswara')->name('userWidyaIswara.')->group(function () {
         Route::get('/beranda', [MainController::class, 'widyaiswara_beranda'])->name('beranda');
@@ -51,6 +52,15 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::prefix('/kegiatan_harian')->name('kegiatan_harian.')->group(function () {
             Route::get('/index/{id}', [KegiatanController::class, 'index'])->name('index');
         });
+        Route::prefix('/penilaian_peserta')->name('penilaian_peserta.')->group(function () {
+            Route::get('/index/{user_id}/{pelatihan_id}', [PenilaianPesertaController::class, 'index'])->name('index');
+            Route::post('/store/', [PenilaianPesertaController::class, 'store'])->name('store');
+            Route::get('/delete/{id}', [PenilaianPesertaController::class, 'destroy'])->name('destroy');
+
+        });
+        // Route::resource('penilaian_peserta', '\App\Http\Controllers\PenilaianPesertaController');
+        Route::resource('modul_pembelajaran', '\App\Http\Controllers\ModulPembelajaranController');
+
         Route::resource('laporan_aktualisasi', LaporanAktualisasiWidyaiswaraController::class);
     });
 });
@@ -64,7 +74,7 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::prefix('/kegiatan_harian_peserta')->name('kegiatan_harian_peserta.')->group(function () {
         Route::get('/index/{id}', [KegiatanPesertaController::class, 'index'])->name('index');
     });
- 
+
     Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
 
@@ -73,10 +83,12 @@ Route::prefix('/report')->name('report.')->group(function () {
     Route::get('/penyakit', [ReportController::class, 'penyakit'])->name('penyakit');
     Route::get('/widyaiswara', [ReportController::class, 'widyaiswara'])->name('widyaiswara');
     Route::get('/pelatihan', [ReportController::class, 'pelatihan'])->name('pelatihan');
+    Route::get('/pelatihan/filter', [ReportController::class, 'pelatihan_filter'])->name('pelatihan.filter');
+    Route::get('/pelatihan/filter/cetak', [ReportController::class, 'pelatihan_filter_cetak'])->name('pelatihan.filter.cetak');
     Route::get('/anggaran/{id}', [ReportController::class, 'anggaran'])->name('anggaran');
     Route::get('/widyaiswara/{id}', [ReportController::class, 'widyaiswara_detail'])->name('widyaiswara.detail');
     Route::get('/pelatihan/{id}', [ReportController::class, 'pelatihan_detail'])->name('pelatihan_detail');
     Route::get('/kegiatan_pelatihan/{id}', [ReportController::class, 'kegiatan_pelatihan'])->name('kegiatan_pelatihan');
     Route::get('/biodata_peserta/{id}', [ReportController::class, 'biodata_peserta'])->name('biodata_peserta');
     Route::get('/laporan_aktualisasi', [ReportController::class, 'laporan_aktualisasi'])->name('laporan_aktualisasi');
-}); 
+});

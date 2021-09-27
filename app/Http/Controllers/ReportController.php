@@ -116,8 +116,6 @@ class ReportController extends Controller
 
     public function laporan_aktualisasi(Request $req)
     {
-        // dd($req->pelatihan_id);
-
         $pelatihan   = Pelatihan::findOrFail($req->pelatihan_id);
         $data        = LaporanAktualisasi::where('pelatihan_id',$pelatihan->id)->latest()->get();
        
@@ -125,5 +123,21 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait'); 
         
         return $pdf->stream('Laporan Laporan Aktualisasi Pelatihan.pdf');
+    }
+
+    public function pelatihan_filter()
+    {
+        return view('admin.pelatihan.filter');
+    }
+
+    public function pelatihan_filter_cetak(Request $req)
+    {
+        $data         = Pelatihan::whereBetween('tanggal_mulai', [$req->tgl_awal, $req->tgl_akhir])->get();
+        $tgl_awal     = $req->tgl_awal;
+        $tgl_akhir    = $req->tgl_akhir ;
+        $pdf          = PDF::loadView('report.pelatihan_filter', ['data'=>$data,'tgl_awal'=>$tgl_awal,'tgl_akhir'=>$tgl_akhir,]);
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan Pelatihan Filter.pdf');
     }
 }

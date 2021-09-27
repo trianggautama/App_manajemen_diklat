@@ -2,7 +2,7 @@
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
-        <h3>Detail Kegiatan Harian </h3>
+        <h3>Penilaian Peserta</h3>
     </div>
     <section class="section mt-4">
         <div class="card">
@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md"> Detail Data</div>
                     <div class="col-md">
-                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index',$data->pelatihan_id)}}"
+                        <a href="{{Route('userWidyaIswara.kegiatan_harian.index',1)}}"
                             class="btn btn-secondary float-end mx-1"> Kembali</a>
                     </div>
                 </div>
@@ -18,27 +18,35 @@
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        <td width="20%">Materi</td>
+                        <td width="15%">Nip</td>
+                        <td width="1%">:</td>
+                        <td>{{$peserta->nip}}</td>
+                    </tr>
+                    <tr>
+                        <td>Nama</td>
                         <td>:</td>
-                        <td>{{$data->materi}}</td>
+                        <td>{{$peserta->nama}}</td>
                     </tr>
                     <tr>
-                        <td width="20%">Tanggal Kegiatan</td>
+                        <td>Tempat, tanggal lahir</td>
                         <td>:</td>
-                        <td>{{$data->tanggal_kegiatan}}</td>
+                        <td>{{$peserta->tempat_lahir.', '.carbon\carbon::parse($peserta->tanggal_lahir)->translatedFormat('d F Y')}}
+                        </td>
                     </tr>
                     <tr>
-                        <td width="20%">Waktu Kegiatan</td>
-                        <td>:
-                        </td>
-                        <td>{{Carbon\carbon::parse($data->waktu_mulai)->format('H:i')}} WITA
-                            - {{Carbon\carbon::parse($data->waktu_selesai)->format('H:i')}} WITA</td>
+                        <td>Jenis kelamin</td>
+                        <td>:</td>
+                        <td>{{$peserta->jenis_kelamin}}</td>
                     </tr>
                     <tr>
-                        <td width="20%">Durasi Kegiatan</td>
-                        <td>:
-                        </td>
-                        <td>{{$data->waktu_kegiatan}} Menit</td>
+                        <td>SKPD</td>
+                        <td>:</td>
+                        <td>{{$peserta->skpd->nama_skpd}}</td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td>{{$peserta->alamat}}</td>
                     </tr>
                 </table>
             </div>
@@ -47,7 +55,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md">
-                        Modul Pembelajaran
+                        Penilaian Peserta
                     </div>
                     <div class="col-md">
                         <button type="button" class="btn btn-outline-primary block float-end" data-bs-toggle="modal"
@@ -58,29 +66,29 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class='table table-striped' id="table1">
+                <table class='table table-striped'>
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Judul Modul </th>
-                            <th>Uraian</th>
-                            <th>File</th>
+                            <th>Objek Penilaian </th>
+                            <th>Nilai</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($modul as $d)
-
+                        @foreach ($data as $d)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$d->judul}}</td>
-                            <td>{{$d->uraian}}</td>
-                            <td><a target="_blank" href="{{asset('modul/'.$d->file)}}" class="btn btn-primary"><i
-                                        data-feather="file"></i> </a></td>
-                            <td><a href="{{route('userWidyaIswara.modul_pembelajaran.show',$d->id)}}"
+                            <td>{{$d->objek_penilaian->objek_penilaian}}</td>
+                            <td>{{$d->nilai}}</td>
+                            <td> <a href="{{Route('userWidyaIswara.penilaian_peserta.destroy',$d->id)}}"
                                     class="btn btn-danger"><i data-feather="delete"></i> </a></td>
                         </tr>
                         @endforeach
+                        <tr class="table-info">
+                            <td colspan="3">Nilai Rata rata</td>
+                            <td>{{$rata}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -99,22 +107,22 @@
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <form action="{{Route('userWidyaIswara.modul_pembelajaran.store')}}" method="POST"
-                enctype="multipart/form-data">
+            <form action="{{Route('userWidyaIswara.penilaian_peserta.store')}}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" name="kegiatan_peserta_id" value="{{$data->id}}">
+                    <input type="hidden" name="user_id" value="{{$peserta->id}}" id="">
+                    <input type="hidden" name="pelatihan_id" value="{{$pelatihan->id}}" id="">
                     <div class="form-group">
-                        <label for="">Judul Modul</label>
-                        <input type="text" name="judul" class="form-control" required>
+                        <select class="form-control" name="objek_penilaian_id" id="">
+                            <option value="">-- pilih objek penilaian --</option>
+                            @foreach ($objekPenilaian as $d)
+                            <option value="{{$d->id}}">{{$d->objek_penilaian}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="">uraian</label>
-                        <textarea name="uraian" id="" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">File (PDF)</label>
-                        <input type="file" name="file" class="form-control" required>
+                        <label for="">nilai</label>
+                        <input type="number" class="form-control" name="nilai">
                     </div>
                 </div>
                 <div class="modal-footer">

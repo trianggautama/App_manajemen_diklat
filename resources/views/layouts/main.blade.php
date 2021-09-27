@@ -49,6 +49,9 @@ halo
                                 <li>
                                     <a href="{{Route('userAdmin.penyakit.index')}}">Penyakit Bawaan</a>
                                 </li>
+                                <li>
+                                    <a href="{{Route('userAdmin.objek_penilaian.index')}}">Objek Penilaian</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-item  has-sub">
@@ -84,6 +87,40 @@ halo
                                 </li>
                                 <li>
                                     <a href="{{Route('userAdmin.laporan_aktualisasi.index')}}">Perpustakaan</a>
+                                </li>
+                            </ul>
+                        </li> 
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="printer" width="20"></i>
+                                <span>Laporan</span>
+                            </a>
+
+                            <ul class="submenu ">
+
+                                <li>
+                                    <a href="{{Route('report.skpd')}}" target="__blank"> SKPD</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('report.penyakit')}}" target="__blank"> Penyakit Bawaan</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('report.widyaiswara')}}" target="__blank"> Widyaiswara</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('report.pelatihan')}}" target="__blank"> Pelatihan</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('report.pelatihan.filter')}}"> Pelatihan Filter Waktu</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}"> Peserta Pelatihan</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}"> Laporan Aktualisasi</a>
+                                </li>
+                                <li>
+                                    <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}">Sertifikat</a>
                                 </li>
                             </ul>
                         </li> 
