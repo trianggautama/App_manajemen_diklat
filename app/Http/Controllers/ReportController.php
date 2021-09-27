@@ -86,7 +86,6 @@ class ReportController extends Controller
         return $pdf->stream('Laporan Biodata Peserta.pdf');
     }
 
-
     public function pelatihan_detail($id)
     { 
         $data   = Pelatihan::findOrFail($id);
@@ -128,6 +127,31 @@ class ReportController extends Controller
     public function pelatihan_filter()
     {
         return view('admin.pelatihan.filter');
+    }
+
+    public function sertifikat_filter()
+    {
+        $peserta = User::whereRole(3)->whereHas('laporan')->latest()->get();
+        return view('admin.sertifikat.filter',compact('peserta'));
+    }
+
+        
+    public function sertifikat_filter_cetak(Request $req)
+    {
+        $data   = User::findOrFail($req->peserta_id);
+        $pdf    = PDF::loadView('report.sertifikat_peserta', ['data'=>$data]);
+        $pdf->setPaper('a4', 'potrait'); 
+        
+        return $pdf->stream('Laporan Sertifikat Peserta.pdf');
+    }
+
+    public function sertifikat_peserta($id)
+    {
+        $data   = User::findOrFail($id);
+        $pdf    = PDF::loadView('report.sertifikat_peserta', ['data'=>$data]);
+        $pdf->setPaper('a4', 'potrait'); 
+        
+        return $pdf->stream('Laporan Sertifikat Peserta.pdf');
     }
 
     public function pelatihan_filter_cetak(Request $req)

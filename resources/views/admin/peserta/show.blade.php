@@ -13,9 +13,12 @@
                     </div>
                     <div class="col-md d-flex flex-row-reverse">
                         <a href="{{Route('userAdmin.pelatihan.show',$peserta->pelatihan_id)}}"
-                            class="btn btn-secondary"><i data-feather="back"></i> Kembali</a>
-                        <a href="{{Route('report.biodata_peserta',$peserta->id)}}" class="btn btn-primary"><i
+                            class="btn btn-secondary m-1"><i data-feather="back"></i> Kembali</a>
+                        <a href="{{Route('report.biodata_peserta',$peserta->id)}}" class="btn btn-primary m-1"><i
                                 data-feather="printer "></i> Cetak Data</a>
+                        @if($peserta->laporan)
+                            <a href="{{Route('report.sertifikat_peserta',$peserta->id)}}" class="btn btn-primary m-1"><i data-feather="printer "></i> Cetak Sertifikat</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -54,7 +57,7 @@
                     <tr>
                         <td>Penyakit Bawaan</td>
                         <td>:</td>
-                        <td> {{$peserta->penyakit->nama_penyakit}}</td>
+                        <td> @if($peserta->panyakit){{$peserta->penyakit->nama_penyakit}}@else tidak ada penyakit bawaan @endif</td>
                     </tr>
                 </table>
             </div>

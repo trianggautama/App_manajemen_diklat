@@ -120,7 +120,7 @@ halo
                                     <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}"> Laporan Aktualisasi</a>
                                 </li>
                                 <li>
-                                    <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}">Sertifikat</a>
+                                    <a href="{{Route('report.sertifikat.filter')}}">Sertifikat</a>
                                 </li>
                             </ul>
                         </li> 

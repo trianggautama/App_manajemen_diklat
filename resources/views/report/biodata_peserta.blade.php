@@ -110,7 +110,7 @@
                     <tr> 
                         <td>Nama</td>
                         <td>:</td>
-                        <td>{{$data->nama}}</td>
+                        <td>{{$data->nama}}</td> 
                     </tr>
                     <tr>
                         <td>Tempat, tanggal lahir</td>

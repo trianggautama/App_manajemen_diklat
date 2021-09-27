@@ -82,5 +82,8 @@ Route::prefix('/report')->name('report.')->group(function () {
     Route::get('/pelatihan/{id}', [ReportController::class, 'pelatihan_detail'])->name('pelatihan_detail');
     Route::get('/kegiatan_pelatihan/{id}', [ReportController::class, 'kegiatan_pelatihan'])->name('kegiatan_pelatihan');
     Route::get('/biodata_peserta/{id}', [ReportController::class, 'biodata_peserta'])->name('biodata_peserta');
+    Route::get('/sertifikat/filter', [ReportController::class, 'sertifikat_filter'])->name('sertifikat.filter');
+    Route::get('/sertifikat/filter/cetak', [ReportController::class, 'sertifikat_filter_cetak'])->name('sertifikat_peserta.filter.cetak');
+    Route::get('/sertifikat_peserta/{id}', [ReportController::class, 'sertifikat_peserta'])->name('sertifikat_peserta');
     Route::get('/laporan_aktualisasi', [ReportController::class, 'laporan_aktualisasi'])->name('laporan_aktualisasi');
 }); 
