@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/modul
+/public/laporan
 /storage/*.key
 /vendor
 .env

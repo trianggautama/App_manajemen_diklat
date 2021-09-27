@@ -17,10 +17,10 @@ class KegiatanPesertaController extends Controller
     public function index($id)
     {
         $pelatihan = Pelatihan::findOrFail($id);
-        $data      = KegiatanPeserta::where('pelatihan_id', $pelatihan->id)->get();
+        $data = KegiatanPeserta::where('pelatihan_id', $pelatihan->id)->get();
 
         return view('peserta.kegiatan.index', compact('pelatihan', 'data'));
-    } 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -54,7 +54,7 @@ class KegiatanPesertaController extends Controller
     public function show($id)
     {
         $data = KegiatanPeserta::findOrFail($id);
-        return view('peserta.kegiatan.show',compact('data'));
+        return view('peserta.kegiatan.show', compact('data'));
     }
 
     /**

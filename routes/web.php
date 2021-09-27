@@ -3,12 +3,12 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KegiatanPesertaController;
-use App\Http\Controllers\LaporanAktualisasiPesertaController;
-use App\Http\Controllers\LaporanAktualisasiWidyaiswaraController;
 use App\Http\Controllers\LaporanAktualisasiAdminController;
+use App\Http\Controllers\LaporanAktualisasiWidyaiswaraController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PelatihanWidyaiswaraController;
+use App\Http\Controllers\PenilaianPesertaController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('/laporan_aktualisasi/filter/report', [LaporanAktualisasiAdminController::class, 'filter'])->name('laporan_aktualisasi.filter');
     });
 });
- 
+
 Route::group(['middleware' => ['widyaiswara']], function () {
     Route::prefix('/user-widyaiswara')->name('userWidyaIswara.')->group(function () {
         Route::get('/beranda', [MainController::class, 'widyaiswara_beranda'])->name('beranda');
@@ -52,11 +52,19 @@ Route::group(['middleware' => ['widyaiswara']], function () {
         Route::prefix('/kegiatan_harian')->name('kegiatan_harian.')->group(function () {
             Route::get('/index/{id}', [KegiatanController::class, 'index'])->name('index');
         });
-        Route::resource('penilaian_peserta', '\App\Http\Controllers\PenilaianPesertaController');
+        Route::prefix('/penilaian_peserta')->name('penilaian_peserta.')->group(function () {
+            Route::get('/index/{user_id}/{pelatihan_id}', [PenilaianPesertaController::class, 'index'])->name('index');
+            Route::post('/store/', [PenilaianPesertaController::class, 'store'])->name('store');
+            Route::get('/delete/{id}', [PenilaianPesertaController::class, 'destroy'])->name('destroy');
+
+        });
+        // Route::resource('penilaian_peserta', '\App\Http\Controllers\PenilaianPesertaController');
+        Route::resource('modul_pembelajaran', '\App\Http\Controllers\ModulPembelajaranController');
+
         Route::resource('laporan_aktualisasi', LaporanAktualisasiWidyaiswaraController::class);
     });
 });
- 
+
 Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
     Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
@@ -66,7 +74,7 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::prefix('/kegiatan_harian_peserta')->name('kegiatan_harian_peserta.')->group(function () {
         Route::get('/index/{id}', [KegiatanPesertaController::class, 'index'])->name('index');
     });
- 
+
     Route::resource('laporan_aktualisasi', '\App\Http\Controllers\LaporanAktualisasiPesertaController');
 });
 
@@ -86,4 +94,4 @@ Route::prefix('/report')->name('report.')->group(function () {
     Route::get('/sertifikat/filter/cetak', [ReportController::class, 'sertifikat_filter_cetak'])->name('sertifikat_peserta.filter.cetak');
     Route::get('/sertifikat_peserta/{id}', [ReportController::class, 'sertifikat_peserta'])->name('sertifikat_peserta');
     Route::get('/laporan_aktualisasi', [ReportController::class, 'laporan_aktualisasi'])->name('laporan_aktualisasi');
-}); 
+});

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ObjekPenilaian;
+use App\Models\Pelatihan;
+use App\Models\PenilaianPeserta;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PenilaianPesertaController extends Controller
@@ -11,9 +15,15 @@ class PenilaianPesertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_id, $pelatihan_id)
     {
-        return view('widyaiswara.penilaian_peserta.index');
+        $peserta = User::findOrfail($user_id);
+        $pelatihan = Pelatihan::findOrFail($pelatihan_id);
+        $objekPenilaian = ObjekPenilaian::all();
+
+        $data = PenilaianPeserta::whereUserId($user_id)->wherePelatihanId($pelatihan_id)->get();
+        $rata = number_format((float) $data->avg('nilai'), 2, '.', '');
+        return view('widyaiswara.penilaian_peserta.index', compact('data', 'pelatihan', 'peserta', 'objekPenilaian', 'rata'));
     }
 
     /**
@@ -34,7 +44,9 @@ class PenilaianPesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PenilaianPeserta::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -79,6 +91,7 @@ class PenilaianPesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = PenilaianPeserta::findOrFail($id)->delete();
+        return back()->withSuccess('Data berhasil dihapus');
     }
 }

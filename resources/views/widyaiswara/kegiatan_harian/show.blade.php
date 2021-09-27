@@ -19,25 +19,26 @@
                 <table class="table table-striped">
                     <tr>
                         <td width="20%">Materi</td>
-                        <td>: -</td>
-                        <td></td>
+                        <td>:</td>
+                        <td>{{$data->materi}}</td>
                     </tr>
                     <tr>
                         <td width="20%">Tanggal Kegiatan</td>
-                        <td>: -</td>
-                        <td></td>
+                        <td>:</td>
+                        <td>{{$data->tanggal_kegiatan}}</td>
                     </tr>
                     <tr>
                         <td width="20%">Waktu Kegiatan</td>
-                        <td>: -
+                        <td>:
                         </td>
-                        <td></td>
+                        <td>{{Carbon\carbon::parse($data->waktu_mulai)->format('H:i')}} WITA
+                            - {{Carbon\carbon::parse($data->waktu_selesai)->format('H:i')}} WITA</td>
                     </tr>
                     <tr>
                         <td width="20%">Durasi Kegiatan</td>
-                        <td>: -
+                        <td>:
                         </td>
-                        <td></td>
+                        <td>{{$data->waktu_kegiatan}} Menit</td>
                     </tr>
                 </table>
             </div>
@@ -68,10 +69,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($modul as $d)
+
                         <tr>
-                            <td colspan="4">-</td>
-                            <td><a href="" class="btn btn-danger"><i data-feather="delete"></i> </a></td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$d->judul}}</td>
+                            <td>{{$d->uraian}}</td>
+                            <td><a target="_blank" href="{{asset('modul/'.$d->file)}}" class="btn btn-primary"><i
+                                        data-feather="file"></i> </a></td>
+                            <td><a href="{{route('userWidyaIswara.modul_pembelajaran.show',$d->id)}}"
+                                    class="btn btn-danger"><i data-feather="delete"></i> </a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -90,9 +99,11 @@
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <form action="{{Route('userAdmin.anggaran.store')}}" method="POST">
+            <form action="{{Route('userWidyaIswara.modul_pembelajaran.store')}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
+                    <input type="hidden" name="kegiatan_peserta_id" value="{{$data->id}}">
                     <div class="form-group">
                         <label for="">Judul Modul</label>
                         <input type="text" name="judul" class="form-control" required>

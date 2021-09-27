@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ObjekPenilaian;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class ObjekPenilaianController extends Controller
@@ -13,7 +15,8 @@ class ObjekPenilaianController extends Controller
      */
     public function index()
     {
-        return view('admin.objek_penilaian.index');
+        $data = ObjekPenilaian::all();
+        return view('admin.objek_penilaian.index', compact('data'));
     }
 
     /**
@@ -34,7 +37,9 @@ class ObjekPenilaianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ObjekPenilaian::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -54,9 +59,9 @@ class ObjekPenilaianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ObjekPenilaian $objek_penilaian)
     {
-        return view('admin.objek_penilaian.edit');
+        return view('admin.objek_penilaian.edit', compact('objek_penilaian'));
     }
 
     /**
@@ -66,9 +71,11 @@ class ObjekPenilaianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ObjekPenilaian $objek_penilaian)
     {
-        //
+        $objek_penilaian->update($request->all());
+
+        return redirect()->route('userAdmin.objek_penilaian.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -77,8 +84,17 @@ class ObjekPenilaianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ObjekPenilaian $objek_penilaian)
     {
-        //
+        try {
+            $objek_penilaian->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

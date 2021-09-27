@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KegiatanPeserta;
+use App\Models\ModulPembelajaran;
 use App\Models\Pelatihan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class KegiatanController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function index($id)
     {
         $pelatihan = Pelatihan::findOrFail($id);
@@ -40,12 +41,12 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        $data               =  $request->all();
-        $waktu_mulai        = Carbon::parse($request->waktu_mulai);
-        $waktu_selesai      = Carbon::parse($request->waktu_selesai);
-        $menit              = $waktu_mulai->diffInMinutes($waktu_selesai);
+        $data = $request->all();
+        $waktu_mulai = Carbon::parse($request->waktu_mulai);
+        $waktu_selesai = Carbon::parse($request->waktu_selesai);
+        $menit = $waktu_mulai->diffInMinutes($waktu_selesai);
 
-        $data['waktu_kegiatan'] = $menit ;
+        $data['waktu_kegiatan'] = $menit;
         KegiatanPeserta::create($data);
 
         return back()->withSuccess('Data berhasil disimpan');
@@ -60,7 +61,8 @@ class KegiatanController extends Controller
     public function show($id)
     {
         $data = KegiatanPeserta::findOrFail($id);
-        return view('widyaiswara.kegiatan_harian.show',compact('data'));
+        $modul = ModulPembelajaran::whereKegiatanPesertaId($id)->get();
+        return view('widyaiswara.kegiatan_harian.show', compact('data', 'modul'));
     }
 
     /**
@@ -87,12 +89,12 @@ class KegiatanController extends Controller
     {
         $data = KegiatanPeserta::findOrFail($id);
 
-        $req               =  $request->all();
-        $waktu_mulai        = Carbon::parse($request->waktu_mulai);
-        $waktu_selesai      = Carbon::parse($request->waktu_selesai);
-        $menit              = $waktu_mulai->diffInMinutes($waktu_selesai);
-        
-        $req['waktu_kegiatan'] = $menit ;
+        $req = $request->all();
+        $waktu_mulai = Carbon::parse($request->waktu_mulai);
+        $waktu_selesai = Carbon::parse($request->waktu_selesai);
+        $menit = $waktu_mulai->diffInMinutes($waktu_selesai);
+
+        $req['waktu_kegiatan'] = $menit;
 
         $data->update($req);
 
