@@ -164,4 +164,22 @@ class ReportController extends Controller
 
         return $pdf->stream('Laporan Pelatihan Filter.pdf');
     }
+
+    public function peserta_filter()
+    {
+        $pelatihan = Pelatihan::latest()->get();
+        return view('admin.peserta.filter',compact('pelatihan'));
+    }
+
+    public function peserta_filter_cetak(Request $req)
+    {
+        $pelatihan   = Pelatihan::findOrFail($req->pelatihan_id); 
+        $data        = User::where('role',3)->where('pelatihan_id',$pelatihan->id)->latest()->get();
+       
+        $pdf    = PDF::loadView('report.peserta', ['data'=>$data, 'pelatihan'=>$pelatihan]);
+        $pdf->setPaper('a4', 'potrait'); 
+        
+        return $pdf->stream('Laporan Peserta.pdf');
+    }
+
 }

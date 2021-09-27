@@ -114,8 +114,8 @@ halo
                                     <a href="{{Route('report.pelatihan.filter')}}"> Pelatihan Filter Waktu</a>
                                 </li>
                                 <li>
-                                    <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}"> Peserta Pelatihan</a>
-                                </li>
+                                    <a href="{{Route('report.peserta.filter')}}"> Peserta Pelatihan</a>
+                                </li> 
                                 <li>
                                     <a href="{{Route('userAdmin.laporan_aktualisasi.filter')}}"> Laporan Aktualisasi</a>
                                 </li>
