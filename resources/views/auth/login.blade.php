@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="position-relative">
                                         <input type="password" class="form-control" id="password" name="password"
-                                            required placeholder="Pawweord">
+                                            required placeholder="Password">
                                         <div class="form-control-icon">
                                             <i data-feather="lock"></i>
                                         </div>
